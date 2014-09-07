@@ -5,25 +5,52 @@
   <title>MediSync App</title>
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </head>
 
 <body>
-  
-  <div id="main">
-    <h1>You're ready to use Parse!</h1>
+    <div id="cssmenu">
+        <ul class="container">
+            <li class='active'><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li class='last'><a href="#">Link 4</a></li>
+        </ul>
+    </div>
+    
+    <div class="container" id="login-section">
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="logo"></div>
+            </div>
+            
+            <div class="col-xs-6">
+                <div class="login">
+                        <input type="text" placeholder="username" name="user"><br>
+                        <input type="password" placeholder="password" name="password"><br>
+                        <input type="button" value="Login">
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    
+    <div class="container">
+        <h1>You're ready to use Parse!</h1>
 
-    <p>Read the documentation and start building your JavaScript app:</p>
+        <p>Read the documentation and start building your JavaScript app:</p>
 
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
+        <ul>
+            <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+            <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+        </ul>
+    </div>
 </body>
 
 </html>
