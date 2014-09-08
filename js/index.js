@@ -3,13 +3,49 @@ window.onload = function(){
     
     var currentUser = Parse.User.current();
     if (currentUser) {
-        $("#login-section").html("<h1>Welcome to MediSync!<br>Your cloud based patient management system!</h1>");
+        $("#login-form").html("<h1>Welcome to MediSync!<br>Your cloud based patient management system!</h1>");
         // do stuff with the user
 
-        $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'>" + currentUser.username + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#'>Dropdown 3</a></li></ul>");
+        $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'>" + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
+        document.getElementById("logoutButton").onclick = logout;
 
     } else {
         // show the signup or login page
-        $("#login-section").html("<div class='row'><div class='col-xs-6'><div id='logo'><img src='assets/medisync_by_mediplus.png'></img></div></div><div class='col-xs-6'><div class='login'><input type='text' placeholder='username' name='user'><br><input type='password' placeholder='password' name='password'><br><input type='button' value='Login'></div></div></div>");
+        $("#login-form").html("<div class='login'><input id='username_input' type='text' placeholder='username' name='user'><br><input id='password_input' type='password' placeholder='password' name='password'><br><input id='log_in_button' type='button' value='Login'></div>");
+        document.getElementById("log_in_button").onclick = login;
+    }
+     
+    $("#password_input").keyup(function(event){
+        if(event.keyCode == 13){
+            login();
+        }
+    });
+    $("#username_input").keyup(function(event){
+        if(event.keyCode == 13){
+            login();
+        }
+    });
+     
+    function login() {
+        var email = document.getElementById("username_input").value;
+        var pw = document.getElementById("password_input").value;
+        Parse.User.logIn(email, pw, {
+          success: function(user) {
+            // Do stuff after successful login.
+            location.reload();
+          },
+          error: function(user, error) {
+            // The login failed. Check error to see why.
+            alert("Your credentials are incorrect!");
+          }
+        });
+    }
+    
+    function logout() {
+        if (confirm('Are you sure you want to log out?')){
+           Parse.User.logOut();
+           location.reload();
+        }
+        return false;
     }
 };

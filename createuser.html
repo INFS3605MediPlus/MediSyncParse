@@ -34,8 +34,8 @@
         function parseSignUp(fname, lname, email, pw) {
             var user = new Parse.User();
             user.set("username", email);
-            user.set("firstName", fname);
-            user.set("lastName", lname);
+            user.set("Staff_First_Name", fname);
+            user.set("Staff_Last_Name", lname);
             user.set("email", email);
             user.set("password", pw);
               
