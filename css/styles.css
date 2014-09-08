@@ -98,8 +98,15 @@ body {
   list-style: none;
   padding: 0;
   line-height: 1;
-  display: block;
   zoom: 1;
+  text-align: left;
+  margin: 0;
+  width: 100%;
+}
+
+#cssmenu ul.dropdown-menu {
+  background: #333333;
+  min-width: 150px;
 }
 #cssmenu ul:after {
   content: " ";
@@ -114,6 +121,9 @@ body {
   padding: 0;
   margin: 0;
 }
+#cssmenu ul li.align-right {
+  float: right;
+}
 #cssmenu.align-right ul li {
   float: right;
 }
@@ -123,6 +133,7 @@ body {
 #cssmenu ul li a {
   color: #ffffff;
   text-decoration: none;
+  background-color: #f96e5b;
   display: block;
   padding: 15px 25px;
   font-family: 'Open Sans', sans-serif;
@@ -146,7 +157,7 @@ body {
   content: "";
   display: block;
   position: absolute;
-  right: -3px;
+  right: 4px;
   top: 19px;
   height: 6px;
   width: 6px;
@@ -167,10 +178,6 @@ body {
   -ms-transition: width .25s;
   -o-transition: width .25s;
   transition: width .25s;
-}
-#cssmenu ul li.last > a:after,
-#cssmenu ul li:last-child > a:after {
-  display: none;
 }
 #cssmenu ul li.active a {
   color: #333333;
@@ -208,4 +215,3 @@ body {
     display: none;
   }
 }
-
