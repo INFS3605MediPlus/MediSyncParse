@@ -19,6 +19,10 @@ body {
     margin: 20px;
 }
 
+#logo img {
+  border-radius: 20%;
+}
+
 .login{
 	height: 150px;
 	padding: 10px;
