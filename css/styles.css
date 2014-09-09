@@ -92,6 +92,11 @@ body {
 	outline: none;
 }
 
+#login-form {
+  transform: translateY(50%);
+  color: crimson;
+}
+
 #cssmenu {
   background: #f96e5b;
   width: auto;
@@ -110,6 +115,10 @@ body {
   background: #333333;
   min-width: 150px;
   margin-left: -30px;
+  max-width: 150px;
+}
+#cssmenu ul.dropdown-menu li {
+  width: 100%;
 }
 #cssmenu ul:after {
   content: " ";
