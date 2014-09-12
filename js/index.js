@@ -3,31 +3,34 @@ window.onload = function(){
     
     var currentUser = Parse.User.current();
     if (currentUser) {
+        // YOU ARE LOGGED IN
         $("#login-form").html("<h1>Welcome to MediSync!<br>Your cloud based patient management system!</h1>");
         // do stuff with the user
 
         $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'>" + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
         document.getElementById("logoutButton").onclick = logout;
 
-
-        init();
+        $('#calendar').fullCalendar({
+            // put your options and callbacks here
+        })
 
     } else {
+        // YOU ARE NOT LOGGED IN
         // show the signup or login page
         $("#login-form").html("<div class='login'><input id='username_input' type='text' placeholder='username' name='user'><br><input id='password_input' type='password' placeholder='password' name='password'><br><input id='log_in_button' type='button' value='Login'></div>");
         document.getElementById("log_in_button").onclick = login;
+
+        $("#password_input").keyup(function(event){
+            if(event.keyCode == 13){
+                login();
+            }
+        });
+        $("#username_input").keyup(function(event){
+            if(event.keyCode == 13){
+                login();
+            }
+        });
     }
-     
-    $("#password_input").keyup(function(event){
-        if(event.keyCode == 13){
-            login();
-        }
-    });
-    $("#username_input").keyup(function(event){
-        if(event.keyCode == 13){
-            login();
-        }
-    });
      
     function login() {
         var email = document.getElementById("username_input").value;
@@ -50,28 +53,5 @@ window.onload = function(){
            location.reload();
         }
         return false;
-    }
-
-    function init() {
-        scheduler.config.multi_day = true;
-        
-        scheduler.config.xml_date="%Y-%m-%d %H:%i";
-        scheduler.init('scheduler_here',new Date(2010,0,10),"week");
-        scheduler.load("./data/events.xml");
-    }
-    
-    function show_minical(){
-        if (scheduler.isCalendarVisible())
-            scheduler.destroyCalendar();
-        else
-            scheduler.renderCalendar({
-                position:"dhx_minical_icon",
-                date:scheduler._date,
-                navigation:true,
-                handler:function(date,calendar){
-                    scheduler.setCurrentView(date);
-                    scheduler.destroyCalendar()
-                }
-            });
     }
 };
