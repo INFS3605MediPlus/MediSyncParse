@@ -12,6 +12,7 @@ window.onload = function(){
 
         $('#calendar').fullCalendar({
             // put your options and callbacks here
+            weekends: false
         })
 
     } else {
