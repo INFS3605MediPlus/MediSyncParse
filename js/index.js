@@ -39,7 +39,8 @@ window.onload = function(){
         Parse.User.logIn(email, pw, {
           success: function(user) {
             // Do stuff after successful login.
-            location.reload();
+            //location.reload();
+            window.location.href = "muthu.html"
           },
           error: function(user, error) {
             // The login failed. Check error to see why.
@@ -51,7 +52,8 @@ window.onload = function(){
     function logout() {
         if (confirm('Are you sure you want to log out?')){
            Parse.User.logOut();
-           location.reload();
+           //location.reload();
+           window.location.href = "index.html"
         }
         return false;
     }

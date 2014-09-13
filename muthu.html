@@ -2,12 +2,72 @@
 <head>
   <meta charset="utf-8">
 
-  <title>My Page</title>
-  <meta name="description" content="My Parse App">
+  <title>Muthu App</title>
+  <meta name="description" content="Muthu App">
   <meta name="viewport" content="width=device-width">
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.0/fullcalendar.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css">
+  
 </head>
 
 <body>
+    <div id="cssmenu">
+        <ul class="container nav">
+            <li class='active' id="home-link"><a href="index.html">Home</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li class='last'><a href="#">Link 4</a></li>
+
+            <li class="dropdown align-right" id="user-dropdown">
+              
+            </li>
+        </ul>
+    </div>
+    
+    <div class="container" id="login-section">
+        <div class='row'>
+            <div class='col-xs-6'>
+                <div id='logo'>
+                    <img src='assets/medisync_by_mediplus.png'></img>
+                </div>
+            </div>
+            <div class='col-xs-6' id="login-form">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="patient-search-section">
+        <h2 style='color:blue; margin-right:310px'>Search Patient</h2>
+        <p></p>
+        <form name='searchPatientForm'>
+          First name: <input type='text' name='firstname'>
+          Last name: <input type='text' name='lastname'>
+          <p></p>
+          <p style= "margin-left:439px"><input id='search_patient_button' class='button' name='searchpatient' type='button' value='Search' />
+          </p>
+        </form>        
+    </div>
+    
+    <div id='calendar'></div>
+    
+    <div class="container">
+        <h1>You're ready to use Parse!</h1>
+
+        <p>Read the documentation and start building your JavaScript app:</p>
+
+        <ul>
+            <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+            <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+        </ul>
+    </div>
 </body>
 
 </html>
