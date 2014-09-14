@@ -68,7 +68,7 @@ window.onload = function(){
         var query = new Parse.Query(Patient);
         var patientFirstName = document.forms["searchPatientForm"]["firstname"].value;
         var patientLastName = document.forms["searchPatientForm"]["lastname"].value;
-        query.equalTo("First_Name", patientFirstName);         
+        query.startsWith("First_Name", patientFirstName) && query.startsWith("Last_Name", patientLastName);         
         query.find({
             success: function(results){
                 alert("Successfully retrieved " + results.length + " patients.");                
