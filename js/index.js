@@ -10,6 +10,8 @@ window.onload = function(){
         $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'>" + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
         document.getElementById("logoutButton").onclick = logout;
 
+        $("#patient-search-section").html("<h2 style='color:blue; margin-right:310px'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input type='text' name='firstname'>Last name: <input type='text' name='lastname'><p></p><p style= 'margin-left:439px'><input id='search_patient_button' class='button' name='searchpatient' type='button' value='Search' /></p></form>");
+        
         $('#calendar').fullCalendar({
             // put your options and callbacks here
             weekends: false
@@ -39,8 +41,8 @@ window.onload = function(){
         Parse.User.logIn(email, pw, {
           success: function(user) {
             // Do stuff after successful login.
-            //location.reload();
-            window.location.href = "muthu.html"
+            location.reload();
+            //window.location.href = "muthu.html"
           },
           error: function(user, error) {
             // The login failed. Check error to see why.
@@ -52,8 +54,8 @@ window.onload = function(){
     function logout() {
         if (confirm('Are you sure you want to log out?')){
            Parse.User.logOut();
-           //location.reload();
-           window.location.href = "index.html"
+           location.reload();
+           //window.location.href = "index.html"
         }
         return false;
     }
