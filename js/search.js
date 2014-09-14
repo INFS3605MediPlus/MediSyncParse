@@ -9,9 +9,10 @@ window.onload = function(){
         document.getElementById("logoutButton").onclick = logout;
 
         $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input id='first_name_input' type='text' name='firstname'>Last name: <input id='last_name_input' type='text' name='lastname'><p></p><p id= 'searchPatientButton'><input id='search_patient_button' class='button' name='searchpatient' type='button' value='Search' /></p></form>");
-        document.getElementById("search_patient_button").onclick = searchPatient;
 
-         $("#patient-search-results-section").html("<h2 id='searchPatientHeading'>Search Results</h2><p></p><form name='patientResultsForm'>First name: <input id='searched_first_name' type='text' name='firstname'>Last name: <input id='searched_last_name' type='text' name='lastname'><p></p></form>");
+         $("#patient-search-results-section").html("<h2 id='searchResultsPatientHeading'>Search Results</h2><p></p><form name='patientResultsForm'>First name: <input id='searched_first_name' type='text' name='firstname'>Last name: <input id='searched_last_name' type='text' name='lastname'><p></p></form>");
+        
+        searchPatient();
 
     } else {
         // YOU ARE NOT LOGGED IN
@@ -27,24 +28,32 @@ window.onload = function(){
         }
         return false;
     }
+    
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
 
     function searchPatient() {        
         var Patient = Parse.Object.extend("Patient");  
         var query = new Parse.Query(Patient);
-        var patientFirstName = document.forms["searchPatientForm"]["firstname"].value;
-        var patientLastName = document.forms["searchPatientForm"]["lastname"].value;
-        query.equalTo("First_Name", patientFirstName);         
+        // NOTE: we may have to uppercase the first character before passing it into the query!
+        var patientFirstName = getURLParameter("firstName");
+        var patientLastName = getURLParameter("lastName");
+        if (patientFirstName == null) patientFirstName = "";
+        if (patientLastName == null) patientLastName = "";
+        query.startsWith("First_Name", patientFirstName);
+        query.startsWith("Last_Name", patientLastName);
         query.find({
             success: function(results){
                 alert("Successfully retrieved " + results.length + " patients.");                
-                for (var i=0; i<results.length; i++){
-                    var object = results[i];
+                //for (var i=0; i<results.length; i++){
+                    //var object = results[i];
                     //alert(object.id + ' - ' + object.get('Last_Name'));                                                  
-                }
+                //}
                 var searchedFirstName = document.getElementById("searched_first_name");
                 var searchedLastName = document.getElementById("searched_last_name");            
-                searchedFirstName.value = object.get('First_Name');
-                searchedLastName.value = object.get('Last_Name');                
+                searchedFirstName.value = results[0].get('First_Name');
+                searchedLastName.value = results[0].get('Last_Name');                
             },
             error: function(error){
                 alert("No Patients Found");

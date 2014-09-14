@@ -27,6 +27,11 @@ body {
   margin-right:24.3%;
 }
 
+#searchResultsPatientHeading{
+  color:blue;
+  margin-right:24.3%;
+}
+
 #searchPatientButton{
   margin-left:34.2%;
 }
