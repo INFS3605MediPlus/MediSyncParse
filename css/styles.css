@@ -15,6 +15,22 @@ body {
     background-size: cover;
 }
 
+#patient-search-section {
+    background-image: url("../assets/unsplash_3.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#searchPatientHeading{
+  color:blue;
+  margin-right:24.3%;
+}
+
+#searchPatientButton{
+  margin-left:34.2%;
+}
+
 #logo {
     margin: 20px;
 }
