@@ -5,25 +5,53 @@
   <title>MediSync App</title>
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/parse.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+  
 </head>
 
 <body>
-  
-  <div id="main">
-    <h1>You're ready to use Parse!</h1>
+    <div id="cssmenu">
+        <ul class="container nav">
+            <li class='active' id="home-link"><a href="index.html">Home</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li class='last'><a href="#">Link 4</a></li>
 
-    <p>Read the documentation and start building your JavaScript app:</p>
+            <li class="dropdown align-right" id="user-dropdown">
+              
+            </li>
+        </ul>
+    </div>
+    
+    <div class="container" id="login-section">
+        <div class='row'>
+            <div class='col-xs-6'>
+                <div id='logo'>
+                    <img src='assets/medisync_by_mediplus.png'></img>
+                </div>
+            </div>
+            <div class='col-xs-6' id="login-form">
+                
+            </div>
+        </div>
+    </div>
+   
+    <div class="container">
+        <h1>You're ready to use Parse!</h1>
 
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
+        <p>Read the documentation and start building your JavaScript app:</p>
+
+        <ul>
+            <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+            <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+        </ul>
+    </div>
 </body>
 
 </html>
