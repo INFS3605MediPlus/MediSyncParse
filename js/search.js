@@ -34,7 +34,9 @@ searchonload = function(){
                 for (var i=0; i<results.length; i++){
                     var object = results[i];
                     
-                    $("#patient-search-results-section").append("<div name='patientResultsForm'>First name:<input id='searched_first_name' type='text' name='firstname' value='" + results[i].get('First_Name') + "'>Last name:<input id='searched_last_name' type='text' name='lastname' value='" + results[i].get('Last_Name') + "'></div>");
+                    $("#patient-search-results-section").append("<div name='patientResultsForm'>First name:<input id='searched_first_name" + i + "' type='text' name='firstname'>Last name:<input id='searched_last_name" + i + "' type='text' name='lastname'></div>");
+                    $("#searched_first_name" + i + "").val(results[i].get('First_Name'));
+                    $("#searched_last_name" + i + "").val(results[i].get('Last_Name'));
                 }          
             },
             error: function(error){
