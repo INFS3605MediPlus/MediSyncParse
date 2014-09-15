@@ -10,6 +10,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+  <script type="text/javascript" src="js/commonForAll.js"></script>
   <script type="text/javascript" src="js/search.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.0/fullcalendar.min.js"></script>
@@ -31,7 +32,17 @@
     
     <div class="container" id="patient-search-section"></div>
 
-    <div class="container" id="patient-search-results-section"></div>
+    <div class="container" id="patient-search-results-section">
+      <h2 id='searchResultsPatientHeading'>Search Results</h2>
+      <p></p>
+      <form name='patientResultsForm'>
+        First name: 
+        <input id='searched_first_name' type='text' name='firstname'>
+        Last name: 
+        <input id='searched_last_name' type='text' name='lastname'>
+        <p></p>
+      </form>
+    </div>
     
 </body>
 

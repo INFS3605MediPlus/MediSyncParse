@@ -1,18 +1,10 @@
-window.onload = function(){ 
-    Parse.initialize("uMG2e5uKOVVE6hrAVbBSSRXuwGRa6BD1lcvN9tm3", "ubjYQ1u3UnPH6g1bk6ayIcNR6sj6MYO47qIxrdPR");
+var currentUser = Parse.User.current();
+
+searchonload = function(){ 
     
-    var currentUser = Parse.User.current();
     if (currentUser) {
         // YOU ARE LOGGED IN
-
-        $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'>" + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
-        document.getElementById("logoutButton").onclick = logout;
-
-        $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input id='first_name_input' type='text' name='firstname'>Last name: <input id='last_name_input' type='text' name='lastname'><p></p><p id= 'searchPatientButton'><input id='search_patient_button' class='button' name='searchpatient' type='button' value='Search' /></p></form>");
-
-         $("#patient-search-results-section").html("<h2 id='searchResultsPatientHeading'>Search Results</h2><p></p><form name='patientResultsForm'>First name: <input id='searched_first_name' type='text' name='firstname'>Last name: <input id='searched_last_name' type='text' name='lastname'><p></p></form>");
-        
-        searchPatient();
+        searchPatientParse();
 
     } else {
         // YOU ARE NOT LOGGED IN
@@ -20,20 +12,11 @@ window.onload = function(){
     }
     
     
-    function logout() {
-        if (confirm('Are you sure you want to log out?')){
-           Parse.User.logOut();
-           location.reload();
-           //window.location.href = "index.html"
-        }
-        return false;
-    }
-    
     function getURLParameter(name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
     }
 
-    function searchPatient() {        
+    function searchPatientParse() {        
         var Patient = Parse.Object.extend("Patient");  
         var query = new Parse.Query(Patient);
         // NOTE: we may have to uppercase the first character before passing it into the query!
@@ -61,3 +44,5 @@ window.onload = function(){
         });       
     }
 };
+
+addLoadEvent(searchonload);
