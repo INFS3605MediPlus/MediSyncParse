@@ -1,9 +1,11 @@
 var currentUser = Parse.User.current();
 
 searchonload = function(){ 
-    
+    $("#search-link").addClass("active");
+
     if (currentUser) {
         // YOU ARE LOGGED IN
+
         searchPatientParse();
 
     } else {

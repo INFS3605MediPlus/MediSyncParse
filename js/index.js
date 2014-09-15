@@ -1,6 +1,8 @@
 var currentUser = Parse.User.current();
 
-indexonload = function(){ 
+indexonload = function(){
+
+    $("#home-link").addClass("active");
     
     if (currentUser) {
         // YOU ARE LOGGED IN
@@ -9,7 +11,7 @@ indexonload = function(){
         $('#calendar').fullCalendar({
             // put your options and callbacks here
             weekends: false
-        })
+        });
 
     } else {
         // YOU ARE NOT LOGGED IN

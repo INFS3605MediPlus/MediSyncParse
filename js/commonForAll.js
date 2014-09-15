@@ -11,6 +11,8 @@ commonFunction = function(){
         $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input id='first_name_input' type='text' name='firstname'>Last name: <input id='last_name_input' type='text' name='lastname'><p></p><p id= 'searchPatientButton'><input id='search_patient_button' class='button' name='searchpatient' type='button' value='Search' /></p></form>");
         document.getElementById("search_patient_button").onclick = searchPatient;
 
+        $("#home-link").after("<li id='search-link'><a href='search.html'>Search Patient</a></li><li id='link3'><a href='#''>Link 3</a></li><li id='link4'><a href='#''>Link 4</a></li>");
+
     } else {
         // YOU ARE NOT LOGGED IN
         // show the signup or login page
