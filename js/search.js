@@ -28,17 +28,14 @@ searchonload = function(){
         if (patientLastName == null) patientLastName = "";
         query.startsWith("First_Name", patientFirstName);
         query.startsWith("Last_Name", patientLastName);
+        query.limit(10);
         query.find({
             success: function(results){
-                alert("Successfully retrieved " + results.length + " patients.");                
-                //for (var i=0; i<results.length; i++){
-                    //var object = results[i];
-                    //alert(object.id + ' - ' + object.get('Last_Name'));                                                  
-                //}
-                var searchedFirstName = document.getElementById("searched_first_name");
-                var searchedLastName = document.getElementById("searched_last_name");            
-                searchedFirstName.value = results[0].get('First_Name');
-                searchedLastName.value = results[0].get('Last_Name');                
+                for (var i=0; i<results.length; i++){
+                    var object = results[i];
+                    
+                    $("#patient-search-results-section").append("<div name='patientResultsForm'>First name:<input id='searched_first_name' type='text' name='firstname' value='" + results[i].get('First_Name') + "'>Last name:<input id='searched_last_name' type='text' name='lastname' value='" + results[i].get('Last_Name') + "'></div>");
+                }          
             },
             error: function(error){
                 alert("No Patients Found");
