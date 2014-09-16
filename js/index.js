@@ -13,6 +13,22 @@ indexonload = function(){
             weekends: false
         });
 
+        var Appointment = Parse.Object.extend("Appointment");
+        var query = new Parse.Query(Appointment);
+        // filter query for this particular user
+        query.find({
+            success: function(results){
+                for (var i=0; i<results.length; i++){
+                    var object = results[i];
+                    
+                    // put object into $('#calendar')
+                }          
+            },
+            error: function(error){
+                alert("No Calendar Entries Found");
+            }
+        });   
+
     } else {
         // YOU ARE NOT LOGGED IN
         // show the signup or login page
@@ -38,7 +54,6 @@ indexonload = function(){
           success: function(user) {
             // Do stuff after successful login.
             location.reload();
-            //window.location.href = "muthu.html"
           },
           error: function(user, error) {
             // The login failed. Check error to see why.
