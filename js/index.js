@@ -48,6 +48,10 @@ indexonload = function(){
     }
      
     function login() {
+        // change login text to http://www.fertllawn.com/image/loader.gif
+        $('#log_in_button').addClass('login-loading');
+        document.getElementById('log_in_button').value = '';
+
         var email = document.getElementById("username_input").value;
         var pw = document.getElementById("password_input").value;
         Parse.User.logIn(email, pw, {
@@ -58,6 +62,8 @@ indexonload = function(){
           error: function(user, error) {
             // The login failed. Check error to see why.
             alert("Your credentials are incorrect!");
+            $('#log_in_button').removeClass('login-loading');
+            document.getElementById('log_in_button').value = 'Login';
           }
         });
     }
