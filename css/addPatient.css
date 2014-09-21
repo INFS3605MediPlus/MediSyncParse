@@ -1,0 +1,125 @@
+/*----------------------------------------------
+css settings for HTML div exactCenter 
+------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+#abc{
+width: 100%;
+height: 100%;
+opacity: 0.95;
+top: 0;
+left: 0;
+display: none;
+position: fixed;			
+background-color: #313131;
+overflow:auto;
+
+}
+
+img#closeButton{
+position: absolute;
+right: -14px;
+top: -14px;
+cursor: pointer;
+}
+
+div#popupAddPatient{
+position: absolute; 
+left: 49%;
+top: 15%;
+margin-left: -202px;
+font-family: 'Raleway', sans-serif;
+}
+
+.addPatientForm{
+width: 500px;
+padding: 10px 50px;
+border: 2px solid gray;
+border-radius: 10px;
+font-family:raleway;
+background-color: white;
+}
+
+.addPatientForm h2{
+background-color: #FEFFED;
+padding: 20px 35px;
+margin: -10px -50px;
+text-align:center;
+border-radius: 10px 10px 0 0;
+}
+
+.addPatientForm hr{
+margin: 10px -50px;
+border: 0; 
+border-top: 2px solid #ccc;
+}
+ 
+.addPatientForm input[type=text]{
+width:30%;
+margin-top: 7px;
+border: 1px solid #ccc;
+font-size: 14px;
+font-family:raleway;
+} 
+
+#nameOfPatient{
+background-image: url("../assets/name.jpg");
+}
+
+#emailOfPatient{
+width:88%;
+}
+
+#addressOfPatient{
+width:83%;
+}
+
+#contactNoOfPatient{
+width:28%;
+}
+
+#DOBOfPatient{
+width:46.5%;
+margin-top: 10px;
+}
+
+#medicareNoOfPatient{
+width:24.7%;
+margin-top: 10px;
+}
+
+#healthCareNoOfPatient{
+width:24.7%;
+}
+
+#createNewPatientButton{
+text-decoration:none;
+width:25%;
+height: 30px;
+margin-left: 325px;
+margin-top: 19px;
+text-align:centre;
+display:block;
+background-color:#FFBC00;
+color: white;
+border: 1px solid #FFCB00;
+font-size:18px;
+cursor:pointer;
+border-radius: 5px;
+}
+
+span{
+color:red;
+font-weight:bold;
+}
+
+button{
+width:17%;
+height:45px;
+border-radius:3px;
+background-color: peru;
+color:white;
+font-family: 'Raleway', sans-serif;
+font-size:16px;
+cursor:pointer;
+}

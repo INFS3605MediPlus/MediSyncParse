@@ -10,9 +10,11 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/searchPatientTEST.css">
+  <link rel="stylesheet" href="css/addPatient.css">
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
   <script type="text/javascript" src="js/commonForAllTEST.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+   <script type="text/javascript" src="js/my_js.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.0/fullcalendar.min.js"></script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css">
@@ -20,6 +22,7 @@
 </head>
 
 <body>
+  <body id='bdy' onclick = "check(event)" style="overflow:hidden;">
     <div id="cssmenu">
         <ul class="container nav">
             <li id="home-link"><a href="index.html">Home</a></li>
@@ -43,6 +46,8 @@
     
     <div class="container" id="patient-search-section"></div>
 
+    <button id = "popup" onclick ="div_show()">Add new Patient</button>
+
     <div id='calendar'></div>
     
     <div class="container">
@@ -55,6 +60,44 @@
             <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
         </ul>
     </div>
+
+    <div id="abc">
+      <div id ="popupAddPatient">
+        <form action="#" method="post" class="addPatientForm" >
+            <img src="assets/3.png" id="closeButton"/>
+            <h2>Add new Patient</h2><hr/>
+            First name: <input type='text' name='firstNameOfPatient' id="firstNameOfPatient">
+            Last name: <input type='text' name='lastNameOfPatient' id="lastNameOfPatient">
+            <br>
+            Email: <input type='text' name='emailOfPatient' id='emailOfPatient'>
+            <br>      
+            Address: <input type="text" name="addressOfPatient" id="addressOfPatient"/>
+            <br>
+            Gender:
+            <input type="radio" name="genderOfPatient" value="Male">Male
+            <input type="radio" name="genderOfPatient" value="Female">Female
+            DOB: <input type="date" name="DOBOfPatient" id="DOBOfPatient"/>
+            <br>
+            Contact No: <input type="text" name="contactNoOfPatient" id="contactNoOfPatient"/>
+            Occupation: <input type="text" name="occupationOfPatient" id="occupationOfPatient"/>
+            <br>
+            Medicare No: <input type="number" name="medicareNoOfPatient" id="medicareNoOfPatient"/>
+            Health Care No: <input type="number" name="healthCareNoOfPatient" id="healthCareNoOfPatient"/>
+            <br>
+            <br>
+            Emergency Contact:
+            <br>
+            Name: <input type='text' name='nameOfEmergencyContact' id='nameOfEmergencyContact'>
+            Contact No: <input type="text" name="contactNoOFEmergencyContact" id="contactNoOfEmergencyContact"/>
+            <br>
+
+            <button id = "createNewPatientButton" onclick ="createNewPatientIntoParse()">Add</button>
+      
+        </form>
+      </div>
+    </div>
+        
+
 </body>
 
 </html>
