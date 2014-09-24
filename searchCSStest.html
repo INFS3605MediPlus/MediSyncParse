@@ -50,20 +50,10 @@
 
     <div id='calendar'></div>
     
-    <div class="container">
-        <h1>You're ready to use Parse!</h1>
-
-        <p>Read the documentation and start building your JavaScript app:</p>
-
-        <ul>
-            <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-            <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-        </ul>
-    </div>
 
     <div id="abc">
       <div id ="popupAddPatient">
-        <form action="#" method="post" class="addPatientForm" >
+        <form action="#" class="addPatientForm" >
             <img src="assets/3.png" id="closeButton"/>
             <h2>Add new Patient</h2><hr/>
             First name: <input type='text' name='firstNameOfPatient' id="firstNameOfPatient">
@@ -74,8 +64,8 @@
             Address: <input type="text" name="addressOfPatient" id="addressOfPatient"/>
             <br>
             Gender:
-            <input type="radio" name="genderOfPatient" value="Male">Male
-            <input type="radio" name="genderOfPatient" value="Female">Female
+            <input type="radio" name="genderOfPatient" id="m" value="Male">Male
+            <input type="radio" name="genderOfPatient" id="f" value="Female">Female
             DOB: <input type="date" name="DOBOfPatient" id="DOBOfPatient"/>
             <br>
             Contact No: <input type="text" name="contactNoOfPatient" id="contactNoOfPatient"/>
