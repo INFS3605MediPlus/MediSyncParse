@@ -8,6 +8,10 @@ body {
     padding: 0 25px;
 }
 
+#im-div {
+    text-align: left;
+}
+
 #login-section {
     background-image: url("../assets/unsplash_3.jpg");
     width: 100%;
