@@ -14,7 +14,7 @@ commonFunction = function(){
         //$("#patient-search-section").html("<ul class='navbar-nav'><li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown'>Dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li><a href='#'>Action</a></li><li><a href='#'>Another action</a></li><li><a href='#'>Something else here</a></li><li class='divider'></li><li><a href='#'>Separated link</a></li><li class='divider'></li><li><a href='#'>One more separated link</a></li></ul></li></ul><form class='navbar-form' role='search'><div class='form-group'><input type='text' class='form-control' placeholder='Search'></div><button type='submit' class='btn btn-default'>Search</button></form>");
 
 
-        $("#home-link").after("<li id='search-link'><a href='search.html'>Search Patient</a></li><li id='link3'><a href='#''>Link 3</a></li><li id='link4'><a href='#''>Link 4</a></li>");
+        $("#home-link").after("<li id='search-link'><a href='search.html'>Search Patient</a></li><li id='im-link'><a href='instantmessage.html'>Instant Messaging</a></li><li id='link4'><a href='#'>Link 4</a></li>");
 
     } else {
         // YOU ARE NOT LOGGED IN

@@ -12,7 +12,7 @@ indexonload = function(){
             // put your options and callbacks here
             weekends: false
         });
-
+        
         var Appointment = Parse.Object.extend("Appointment");
         var query = new Parse.Query(Appointment);
         // filter query for this particular user
@@ -27,7 +27,7 @@ indexonload = function(){
             error: function(error){
                 alert("No Calendar Entries Found");
             }
-        });   
+        });
 
     } else {
         // YOU ARE NOT LOGGED IN
