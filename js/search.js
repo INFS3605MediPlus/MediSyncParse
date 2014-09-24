@@ -34,7 +34,7 @@ searchonload = function(){
                 for (var i=0; i<results.length; i++){
                     var object = results[i];
                     
-                    $("#search-results-table").append("<tr><td>1</td><td><a href='patient.html?patientID=" + object.id + "'>" + object.get('First_Name') + "</a></td><td>" + object.get('Last_Name') + "</td><td>@mdo</td></tr>");
+                    $("#search-results-table").append("<tr><td>" + i + "</td><td><a href='patient.html?patientID=" + object.id + "'>" + object.get('First_Name') + "</a></td><td>" + object.get('Last_Name') + "</td><td>" + object.get('Contact_No') + "</td></tr>");
                 }          
             },
             error: function(error){

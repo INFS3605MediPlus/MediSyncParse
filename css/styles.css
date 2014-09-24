@@ -16,7 +16,7 @@ body {
 }
 
 #patient-search-section {
-    background-image: url("../assets/light-blue-background.jpg");
+    background: linear-gradient(to bottom, #7db9e8 0%, #2989d8 100%);
     width: 100%;
     border: 1px solid;
     border-radius: 25px;
