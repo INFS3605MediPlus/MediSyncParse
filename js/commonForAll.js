@@ -5,13 +5,13 @@ commonFunction = function(){
     if (currentUser) {
         // YOU ARE LOGGED IN
 
-        $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'>" + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
+        $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'><span class='glyphicon glyphicon-user'></span> " + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
         document.getElementById("logoutButton").onclick = logout;
 
         $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input id='first_name_input' type='text' name='firstname'>Last name: <input id='last_name_input' type='text' name='lastname'><p></p><p id= 'searchPatientButton'><button id='search_patient_button' class='button' name='searchpatient' type='button'>Search <span class='glyphicon glyphicon-search'></span></button></p></form>");
         document.getElementById("search_patient_button").onclick = searchPatient;
 
-        $("#home-link").after("<li id='search-link'><a href='search.html'>Search Patient</a></li><li id='im-link'><a href='instantmessage.html'>Instant Messaging</a></li><li id='link4'><a href='#'>Link 4</a></li>");
+        $("#home-link").after("<li id='search-link'><a href='search.html'><span class='glyphicon glyphicon-list-alt'></span> Patients</a></li><li id='im-link'><a href='instantmessage.html'><span class='glyphicon glyphicon-comment'></span> IM</a></li>");
 
     } else {
         // YOU ARE NOT LOGGED IN

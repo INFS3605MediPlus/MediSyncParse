@@ -12,6 +12,10 @@ imonload = function(){
         // YOU ARE NOT LOGGED IN
         window.location.href = "index.html";
     }
+
+    function htmlEncode(value){ 
+      return $('<div/>').text(value).html(); 
+    }
     
     function loadIM() {        
         pubnub = PUBNUB.init({
@@ -21,7 +25,7 @@ imonload = function(){
         
         pubnub.subscribe({
             channel: 'my_channel',
-            message: function(m){$('#im-messages').append(m + '<br/>')}
+            message: function(m){$('#im-messages').append(htmlEncode(m) + '<br/>')}
          });    
     }
     
