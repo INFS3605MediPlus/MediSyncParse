@@ -54,43 +54,77 @@ margin: 10px -50px;
 border: 0; 
 border-top: 2px solid #ccc;
 }
+
+.addPatientForm label, input{
+display:inline-block;
+}
+
+
+.addPatientForm label{
+width:107px;
+float:left;
+margin-top: 5px;
+text-align: right;
+}
  
 .addPatientForm input[type=text]{
-width:30%;
+width:70%;
 margin-top: 7px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
-} 
+border-radius: 5px;
+}
+
+.addPatientForm input[type=date]{
+width:70%;
+margin-top: 15px;
+border: 1px solid #ccc;
+font-size: 14px;
+font-family:raleway;
+border-radius: 5px;
+}
+
+.addPatientForm input[type=number]{
+width:70%;
+margin-top: 7px;
+border: 1px solid #ccc;
+font-size: 14px;
+font-family:raleway;
+border-radius: 5px;
+}
 
 #nameOfPatient{
 background-image: url("../assets/name.jpg");
 }
 
-#emailOfPatient{
-width:88%;
+#m{
+margin-left: -150px;
+margin-top: 15px;
+}
+
+#f{
+margin-left: 20px;
 }
 
 #addressOfPatient{
-width:83%;
+
 }
 
 #contactNoOfPatient{
-width:28%;
+
 }
 
 #DOBOfPatient{
-width:46.5%;
-margin-top: 10px;
+
 }
 
 #medicareNoOfPatient{
-width:24.7%;
-margin-top: 10px;
+
 }
 
 #healthCareNoOfPatient{
-width:24.7%;
+
 }
 
 #createNewPatientButton{
