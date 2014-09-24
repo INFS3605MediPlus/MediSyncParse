@@ -10,7 +10,7 @@ function createNewPatientIntoParse() {
     var newPatientmedicare = document.getElementById("medicareNoOfPatient").value;
     var newPatienthealthcare = document.getElementById("healthCareNoOfPatient").value;
     var newPatientemergname = document.getElementById("nameOfEmergencyContact").value;
-    var newPatientemergcontact = document.getElementById("contactNoOFEmergencyContact").value;
+    var newPatientemergcontact = document.getElementById("contactNoOfEmergencyContact").value;
     var gendervalue = '';
     if (document.getElementById("m").checked){
       gendervalue = document.getElementById("m").value;
@@ -42,7 +42,7 @@ function parseCreatePatient(fname, lname, email, address, dob, contact, occ, med
       },
       error: function(patient, error) {
         // Show the error message somewhere and let the user try again.
-        //alert("Error: " + error.code + " " + error.message);
+        alert("Error: " + error.code + " " + error.message);
       }
     });
 }

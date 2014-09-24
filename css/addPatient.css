@@ -61,9 +61,8 @@ display:inline-block;
 
 
 .addPatientForm label{
-width:107px;
+width:109px;
 float:left;
-margin-top: 5px;
 text-align: right;
 }
  
@@ -107,25 +106,6 @@ margin-top: 15px;
 margin-left: 20px;
 }
 
-#addressOfPatient{
-
-}
-
-#contactNoOfPatient{
-
-}
-
-#DOBOfPatient{
-
-}
-
-#medicareNoOfPatient{
-
-}
-
-#healthCareNoOfPatient{
-
-}
 
 #createNewPatientButton{
 text-decoration:none;
