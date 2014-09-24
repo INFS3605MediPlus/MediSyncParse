@@ -9,9 +9,19 @@ commonFunction = function(){
         document.getElementById("logoutButton").onclick = logout;
 
         $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input id='first_name_input' type='text' name='firstname'>Last name: <input id='last_name_input' type='text' name='lastname'><p></p><p id= 'searchPatientButton'><button id='search_patient_button' class='button' name='searchpatient' type='button'>Search <span class='glyphicon glyphicon-search'></span></button></p></form>");
+
         document.getElementById("search_patient_button").onclick = searchPatient;
 
         $("#home-link").after("<li id='search-link'><a href='search.html'><span class='glyphicon glyphicon-list-alt'></span> Patients</a></li><li id='im-link'><a href='instantmessage.html'><span class='glyphicon glyphicon-comment'></span> IM</a></li>");
+
+        $('body').waypoint(function(direction) {
+          if (direction == 'down') {
+            $('#cssmenu').addClass('sticky');
+          } else {
+            // direction is down
+            $('#cssmenu').removeClass('sticky');
+          }
+        }, { offset: -50 });
 
     } else {
         // YOU ARE NOT LOGGED IN
