@@ -4,14 +4,12 @@ createuseronload = function(){
     // also check if user has role "admin"!
     if (currentUser) {
         // YOU ARE LOGGED IN
+        document.getElementById("sign_up_button").onclick = signUp;
     } else {
         // YOU ARE NOT LOGGED IN
         window.location.href = "index.html";
     }
 };
-
-
-document.getElementById("sign_up_button").onclick = signUp;
 
 function signUp() {
     $('#sign_up_button').hide();
