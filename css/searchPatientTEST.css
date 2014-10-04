@@ -23,8 +23,9 @@ body {
 
 /* Form wrapper styling */
 .form-wrapper {
-    width: 700px;
+    width: 75%;
     padding: 15px;
+    float:left;
     margin: 18px auto 50px auto;
     background: #444;
     background: rgba(0,0,0,.2);
@@ -35,10 +36,10 @@ body {
 /* Form text input */
  
 .form-wrapper input {
-    width: 561px;
+    width: 90%;
     height: 40px;
     padding: 10px 5px;
-    float: right;    
+    float: left;    
     font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
     border: 0;
     background: #eee;
@@ -69,16 +70,11 @@ body {
     font-style: italic;
 }
 
-#patient-search-section ul.searchPatientDropdown{
-    float: left;
-    margin-left: -43px;
-}
-
 /* Form submit button */
 .form-wrapper button {
     overflow: visible;
     position: absolute;
-    right: 25.3%;
+    right: 27.7%;
     float: right;
     border: 0;
     padding: 0;

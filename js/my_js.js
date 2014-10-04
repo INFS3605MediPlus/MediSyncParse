@@ -49,15 +49,15 @@ function parseCreatePatient(fname, lname, email, address, dob, contact, occ, med
 
 //function to display Popup
 function div_show(){ 
-document.getElementById('abc').style.display = "block";
+document.getElementById('patientform').style.display = "block";
 }
 
 //function to check target element
 function check(e){ 
 var target = (e && e.target) || (event && event.srcElement); 
 
-var obj = document.getElementById('abc'); 
-var obj2 = document.getElementById('popup'); 
+var obj = document.getElementById('patientform'); 
+var obj2 = document.getElementById('add_patient_icon'); 
 
 checkParent(target)?obj.style.display='none':null; 
 target==obj2?obj.style.display='block':null; 
@@ -67,15 +67,48 @@ target==obj2?obj.style.display='block':null;
 //function to check parent node and return result accordingly
 function checkParent(t){ 
 	while(t.parentNode){ 
-		if(t==document.getElementById('abc'))
+		if(t==document.getElementById('patientform'))
 			{ 
 				return false 
 			}
-		else if(t==document.getElementById('closeButton'))
+		else if(t==document.getElementById('closeButtonPatient'))
 			{
 				return true
 			} 
 		t=t.parentNode 
 	} 
 	return true 
+}
+
+//function to display Popup
+function user_show(){ 
+document.getElementById('userform').style.display = "block";
+}
+
+//function to check target element
+function check(e){ 
+var target = (e && e.target) || (event && event.srcElement); 
+
+var obj = document.getElementById('userform'); 
+var obj2 = document.getElementById('add_user_icon'); 
+
+checkParent(target)?obj.style.display='none':null; 
+target==obj2?obj.style.display='block':null; 
+
 } 
+
+//function to check parent node and return result accordingly
+function checkParent(t){ 
+    while(t.parentNode){ 
+        if(t==document.getElementById('userform'))
+            { 
+                return false 
+            }
+        else if(t==document.getElementById('closeButtonUser'))
+            {
+                return true
+            } 
+        t=t.parentNode 
+    } 
+    return true 
+}
