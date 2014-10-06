@@ -14,7 +14,8 @@
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
   <script type="text/javascript" src="js/commonForAllTEST.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
-   <script type="text/javascript" src="js/my_js.js"></script>
+  <script type="text/javascript" src="js/my_js.js"></script>
+  <script type="text/javascript" src="js/appointmentForm.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.0/fullcalendar.min.js"></script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css">
@@ -52,7 +53,7 @@
     <div id="patientform">
       <div id ="popupAddPatient">
         <form action="#" class="addPatientForm" >
-            <img src="assets/3.png" id="closeButtonPatient"/>
+            <img src="assets/3.png" id="closeButtonPatient" onclick ="closePatientForm()"/>
             <h2>Add new Patient</h2><hr/>
             <label for="labelFirstName">First Name:</label>
             <input type='text' name='firstNameOfPatient' id="firstNameOfPatient">
@@ -101,47 +102,58 @@
     <div id="userform">
       <div id ="popupAddPatient">
         <form action="#" class="addPatientForm" >
-            <img src="assets/3.png" id="closeButtonUser"/>
+            <img src="assets/3.png" id="closeButtonUser" onclick ="closeUserForm()"/>
             <h2>Add new User</h2><hr/>
             <label for="labelFirstName">First Name:</label>
-            <input type='text' name='firstNameOfPatient' id="firstNameOfPatient">
+            <input type='text' name='firstNameOfUser' id="firstNameOfUser">
             <br> 
             <label for="labelLastName">Last Name:</label>
-            <input type='text' name='lastNameOfPatient' id="lastNameOfPatient">
+            <input type='text' name='lastNameOfUser' id="lastNameOfUser">
             <br> 
             <label for="labelEmail">Email:</label>
-            <input type='text' name='emailOfPatient' id='emailOfPatient'>
+            <input type='text' name='emailOfUser' id='emailOfUser'>
+            <br>
+            <label for="labelEmail">Confirm Email:</label>
+            <input type='text' name='emailConfirmedOfUser' id='emailConfirmedOfUser'>
             <br>      
-            <label for="labelAddress">Address:</label>
-            <input type="text" name="addressOfPatient" id="addressOfPatient"/>
-            <br>
-            <label for="labelGender">Gender:</label>
-            <input type="radio" name="genderOfPatient" id="m" value="Male">Male
-            <input type="radio" name="genderOfPatient" id="f" value="Female">Female
-            <br>
             <label for="labelDOB">DOB:</label>
-            <input type="date" name="DOBOfPatient" id="DOBOfPatient"/>
+            <input type="date" name="DOBOfUser" id="DOBOfUser"/>
             <br>
             <label for="labelContact">Contact No:</label>
-            <input type="text" name="contactNoOfPatient" id="contactNoOfPatient"/>
+            <input type="text" name="contactNoOfUser" id="contactNoOfUser"/>
             <br>
-            <label for="labelOccupation">Occupation:</label>
-            <input type="text" name="occupationOfPatient" id="occupationOfPatient"/>
+            <label for="labelOccupation">Staff Type:</label>
+            <input type="text" name="staffTypeOfUser" id="staffTypeOfUser"/>
             <br>
-            <label for="labelMedicareNo">Medicare No:</label>
-            <input type="number" name="medicareNoOfPatient" id="medicareNoOfPatient"/>
+            <label for="labelUserPassword">Password:</label>
+            <input type="password" name="passwordOfUser" id="passwordOfUser"/>
             <br>
-            <label for="labelHealthCareNo">Health Care No:</label>
-            <input type="number" name="healthCareNoOfPatient" id="healthCareNoOfPatient"/>
-            <br>
-            <label for="labelEmergencyName">Emergency Contact Name:</label>
-            <input type='text' name='nameOfEmergencyContact' id='nameOfEmergencyContact'>
-            <br>
-            <label for="labelEmergencyContactNo">Emergency Contact No:</label>
-            <input type="text" name="contactNoOFEmergencyContact" id="contactNoOfEmergencyContact"/>
+            <label for="labelUserPassword">Confirm Password:</label>
+            <input type="password" name="passwordConfirmedOfUser" id="passwordConfirmedOfUser"/>
             <br>
 
-            <button id = "createNewPatientButton" type="button" onclick ="createNewPatientIntoParse()">Add</button>
+            <button id = "createNewPatientButton" type="button" onclick ="createNewUserIntoParse()">Add</button>
+      
+        </form>
+      </div>
+    </div>
+
+    <div id="appointmentform">
+      <div id ="popupAddPatient">
+        <form action="#" class="addPatientForm" >
+            <img src="assets/3.png" id="closeButtonAppointment" onclick ="closeAppointmentForm()"/>
+            <h2>Add new Appointment</h2><hr/>
+            <label for="labelApptMedicareNo">Medicare No:</label>
+            <input type='number' name='apptMedicareNo' id="apptMedicareNo">
+            <br>
+            <label for="labelApptDate">Appointment Date:</label>
+            <input type="date" name="apptDate" id="apptDate"/>
+            <br>
+            <label for="labelApptTime">Appointment Time:</label>
+            <input type="time" name="apptTime" id="apptTime"/>
+            <br>
+
+            <button id = "createNewPatientButton" type="button" onclick ="createNewAppointmentIntoParse()">Create</button>
       
         </form>
       </div>
