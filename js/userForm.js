@@ -2,30 +2,82 @@ function closeUserForm(){
     location.reload();
 }
 
-function createNewUserntoParse() {
+function createNewUserIntoParse() {
     var newUserfname = document.getElementById("firstNameOfUser").value;
     var newUserlname = document.getElementById("lastNameOfUser").value;
     var newUseremail = document.getElementById("emailOfUser").value;
+    var newUserconemail = document.getElementById("emailConfirmedOfUser").value;
+    var newUsercontactno = document.getElementById("contactNoOfUser").value;
+    var newUserstafftype = document.getElementById("staffTypeOfUser").value;
+    var newUserpassword = document.getElementById("passwordOfUser").value;
+    var newUserconpassword = document.getElementById("passwordConfirmedOfUser").value;
 
-        parseCreateUser(newUserfname, newUserlname, newUseremail);
+    var errors = validateUserForm(newUserfname, newUserlname, newUseremail, newUserconemail, newUsercontactno, newUserstafftype, newUserpassword, newUserconpassword);
+    if (errors == "") {
+        parseCreateUser(newUserfname, newUserlname, newUseremail, newUserconemail, newUsercontactno, newUserstafftype, newUserpassword, newUserconpassword);
+    } else {
+        alert(errors);
+    }
 }
 
-function parseCreateUser(fname, lname, email) {
+function parseCreateUser(fname, lname, email, contactno, stafftype, pw) {
     var User = Parse.Object.extend("User");
     var user = new User();
     user.set("Staff_First_Name", fname);
     user.set("Staff_Last_Name", lname);
     user.set("username", email);
+    user.set("Staff_Contact_No", contactno);
+    user.set("Staff_Type", stafftype);
+    user.set("password", pw);
       
     user.save(null, {
       success: function(user) {
-        alert("Patient created");
+        alert("User created");
+        location.reload();
       },
       error: function(user, error) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
       }
     });
+}
+
+function validateUserForm(fname, lname, email, conemail, contactno, stafftype, pw, confpw) {
+    var returnValue = "";
+    
+    if (pw != confpw) {
+        returnValue = returnValue.concat("Passwords do not match!\n");
+    }
+    if (email != conemail) {
+        returnValue = returnValue.concat("Emails do not match!\n");
+    }
+    if (pw.length < 8) {
+        returnValue = returnValue.concat("Password must be longer than 8 characters\n");
+    }
+    if (fname == "") {
+        returnValue = returnValue.concat("First name cannot be blank\n");
+    }
+    if (lname == "") {
+        returnValue = returnValue.concat("Last name cannot be blank\n");
+    }
+    if (email == "") {
+        returnValue = returnValue.concat("Email cannot be blank\n");
+    }
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(email)) {
+        returnValue = returnValue.concat("Please enter a valid email address\n");
+    }
+    if (contactno == "") {
+        returnValue = returnValue.concat("Contact number cannot be blank\n");
+    }
+    if (contactno.length != 10) {
+        returnValue = returnValue.concat("Contact number must have 10 digits\n");
+    }
+    if (stafftype == "") {
+        returnValue = returnValue.concat("Staff type cannot be blank\n");
+    }
+    
+    return returnValue;
 }
 
 //function to display Popup
