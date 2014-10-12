@@ -2,11 +2,6 @@ function closePatientForm(){
     location.reload();
 }
 
-function closeUserForm(){
-    location.reload();
-}
-
-
 function createNewPatientIntoParse() {
     var newPatientfname = document.getElementById("firstNameOfPatient").value;
     var newPatientlname = document.getElementById("lastNameOfPatient").value;
@@ -112,37 +107,4 @@ function checkParent(t){
 		t=t.parentNode 
 	} 
 	return true 
-}
-
-//function to display Popup
-function user_show(){ 
-document.getElementById('userform').style.display = "block";
-}
-
-//function to check target element
-function check(e){ 
-var target = (e && e.target) || (event && event.srcElement); 
-
-var obj = document.getElementById('userform'); 
-var obj2 = document.getElementById('add_user_icon'); 
-
-checkParent(target)?obj.style.display='none':null; 
-target==obj2?obj.style.display='block':null; 
-
-} 
-
-//function to check parent node and return result accordingly
-function checkParent(t){ 
-    while(t.parentNode){ 
-        if(t==document.getElementById('userform'))
-            { 
-                return false 
-            }
-        else if(t==document.getElementById('closeButtonUser'))
-            {
-                return true
-            } 
-        t=t.parentNode 
-    } 
-    return true 
 }
