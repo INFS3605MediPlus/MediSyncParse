@@ -50,32 +50,6 @@ function parseCreatePatient(fname, lname, email, address, dob, contact, occ, med
     });
 }
 
-function createNewUserntoParse() {
-    var newUserfname = document.getElementById("firstNameOfUser").value;
-    var newUserlname = document.getElementById("lastNameOfUser").value;
-    var newUseremail = document.getElementById("emailOfUser").value;
-
-        parseCreateUser(newUserfname, newUserlname, newUseremail);
-}
-
-function parseCreateUser(fname, lname, email) {
-    var User = Parse.Object.extend("User");
-    var user = new User();
-    user.set("Staff_First_Name", fname);
-    user.set("Staff_Last_Name", lname);
-    user.set("username", email);
-      
-    user.save(null, {
-      success: function(user) {
-        alert("Patient created");
-      },
-      error: function(user, error) {
-        // Show the error message somewhere and let the user try again.
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-}
-
 //function to display Popup
 function div_show(){ 
 document.getElementById('patientform').style.display = "block";
