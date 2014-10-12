@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/search_patient_styles.css">
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
   <script type="text/javascript" src="js/commonForAll.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
@@ -43,6 +44,27 @@
     </div>
     
     <div class="container" id="patient-search-section"></div>
+
+    <ul class="nav">
+        <li id="settings">
+            <a href="#"><img id='clinic_icon' src="assets\clinic_icon.png" /></a>
+        </li>
+        <li id="search">
+            <form action="" method="get">
+                <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+                <input type="button" name="search_button" id="search_button"></a>
+            </form>
+        </li>
+        <li id="options">
+            <a href="#">Options</a>
+            <ul class="subnav">
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Application</a></li>
+                <li><a href="#">Board</a></li>
+                <li><a href="#">Options</a></li>
+            </ul>
+        </li>
+    </ul>
 
     <div id='calendar'></div>
 </body>
