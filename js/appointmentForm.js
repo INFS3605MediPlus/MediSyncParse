@@ -1,9 +1,9 @@
 
 function createNewAppointmentIntoParse() {
     var newApptMedicareNo = document.getElementById("apptMedicareNo").value;
-    var newApptDate = document.getElementById("apptDate").value;
+    var newApptDate = new Date(document.getElementById("apptDate").value);
     var newApptTime = document.getElementById("apptTime").value;
-        parseCreateAppointment(newApptMedicareNo, newApptDate, newApptTime);
+        parseCreateAppointment(parseInt(newApptMedicareNo), newApptDate, newApptTime);
 }
 
 function parseCreateAppointment(apptMedicareNo, apptDate, apptTime) {
@@ -12,6 +12,18 @@ function parseCreateAppointment(apptMedicareNo, apptDate, apptTime) {
     appointment.set("Appointment_Date", apptDate);
     appointment.set("Appointment_Time", apptTime);
     
+    var Patient = Parse.Object.extend("Patient");
+    var retrievePatientObjectID = new Parse.Query(Patient);
+    retrievePatientObjectID.equalTo("Medicare_No", apptMedicareNo);
+    retrievePatientObjectID.find({
+        success: function(Patient){
+            var patientObjectId = Patient.id;
+            appointment.set("Patient_ID", patientObjectId);
+        },
+        error: function(Patient, error){
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
     
     appointment.save(null, {
       success: function(appointment) {

@@ -66,7 +66,7 @@
             <input type='text' name='emailOfPatient' id='emailOfPatient'>
             <br>      
             <label for="labelAddress">Address:</label>
-            <input type="text" name="addressOfPatient" id="addressOfPatient"/>
+            <input type="text" placeholder='No. | Street | Suburb | State | Postcode'  required name="addressOfPatient" id="addressOfPatient"/>
             <br>
             <label for="labelGender">Gender:</label>
             <input type="radio" name="genderOfPatient" id="m" value="Male">Male
@@ -89,6 +89,7 @@
             <br>
             <label for="labelEmergencyName">Emergency Contact Name:</label>
             <input type='text' name='nameOfEmergencyContact' id='nameOfEmergencyContact'>
+            <br>
             <br>
             <label for="labelEmergencyContactNo">Emergency Contact No:</label>
             <input type="text" name="contactNoOFEmergencyContact" id="contactNoOfEmergencyContact"/>
@@ -123,8 +124,8 @@
             <label for="labelContact">Contact No:</label>
             <input type="text" name="contactNoOfUser" id="contactNoOfUser"/>
             <br>
-            <label for="labelOccupation">Staff Type:</label>
-            <input type="text" name="staffTypeOfUser" id="staffTypeOfUser"/>
+            <label for="labelUserRole">Role:</label>
+            <select id="roleDropdown"><option value="Select">Select</option><option value="Administrator">Administrator</option><option value="Specialist">Specialist</option><option value="Nurse">Nurse</option><option value="Secretary">Secretary</option></select>
             <br>
             <label for="labelUserPassword">Password:</label>
             <input type="password" name="passwordOfUser" id="passwordOfUser"/>

@@ -8,24 +8,26 @@ function createNewUserIntoParse() {
     var newUseremail = document.getElementById("emailOfUser").value;
     var newUserconemail = document.getElementById("emailConfirmedOfUser").value;
     var newUsercontactno = document.getElementById("contactNoOfUser").value;
-    var newUserstafftype = document.getElementById("staffTypeOfUser").value;
+    var newUserRole = document.getElementById("roleDropdown");
+    var newUserSelectedRole = newUserRole.options[newUserRole.selectedIndex].value;
     var newUserpassword = document.getElementById("passwordOfUser").value;
     var newUserconpassword = document.getElementById("passwordConfirmedOfUser").value;
 
-    var errors = validateUserForm(newUserfname, newUserlname, newUseremail, newUserconemail, newUsercontactno, newUserstafftype, newUserpassword, newUserconpassword);
+    var errors = validateUserForm(newUserfname, newUserlname, newUseremail, newUserconemail, newUsercontactno, newUserSelectedRole, newUserpassword, newUserconpassword);
     if (errors == "") {
-        parseCreateUser(newUserfname, newUserlname, newUseremail, newUserconemail, newUsercontactno, newUserstafftype, newUserpassword, newUserconpassword);
+        parseCreateUser(newUserfname, newUserlname, newUsercontactno, newUserSelectedRole, newUseremail, newUserpassword);
     } else {
         alert(errors);
     }
 }
 
-function parseCreateUser(fname, lname, email, contactno, stafftype, pw) {
+function parseCreateUser(fname, lname, contactno, stafftype, email, pw) {
     var User = Parse.Object.extend("User");
     var user = new User();
     user.set("Staff_First_Name", fname);
     user.set("Staff_Last_Name", lname);
     user.set("username", email);
+    user.set("email", email);
     user.set("Staff_Contact_No", contactno);
     user.set("Staff_Type", stafftype);
     user.set("password", pw);
@@ -70,11 +72,11 @@ function validateUserForm(fname, lname, email, conemail, contactno, stafftype, p
     if (contactno == "") {
         returnValue = returnValue.concat("Contact number cannot be blank\n");
     }
-    if (contactno.length != 10) {
-        returnValue = returnValue.concat("Contact number must have 10 digits\n");
+    if (contactno.length <8 || contactno.length >12) {
+        returnValue = returnValue.concat("Contact number must have between 8 and 12 digits\n");
     }
-    if (stafftype == "") {
-        returnValue = returnValue.concat("Staff type cannot be blank\n");
+    if (stafftype == "Select") {
+        returnValue = returnValue.concat("The Role field cannot be blank\n");
     }
     
     return returnValue;

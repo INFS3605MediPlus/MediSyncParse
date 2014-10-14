@@ -132,6 +132,15 @@ float:left;
 text-align: right;
 }
  
+#roleDropdown{
+width:70%;
+margin-top: 7px;
+border: 1px solid #ccc;
+font-size: 14px;
+font-family:raleway;
+border-radius: 5px;
+}
+
 .addPatientForm input[type=text]{
 width:70%;
 margin-top: 7px;

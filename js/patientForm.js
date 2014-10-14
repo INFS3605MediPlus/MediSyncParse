@@ -7,7 +7,7 @@ function createNewPatientIntoParse() {
     var newPatientlname = document.getElementById("lastNameOfPatient").value;
     var newPatientemail = document.getElementById("emailOfPatient").value;
     var newPatientaddress = document.getElementById("addressOfPatient").value;
-    var newPatientDOB = document.getElementById("DOBOfPatient").value;
+    var newPatientDOB = new Date(document.getElementById("DOBOfPatient").value);
     var newPatientcontact = document.getElementById("contactNoOfPatient").value;
     var newPatientoccupation = document.getElementById("occupationOfPatient").value;
     var newPatientmedicare = document.getElementById("medicareNoOfPatient").value;
@@ -20,7 +20,13 @@ function createNewPatientIntoParse() {
     } else {
       gendervalue = document.getElementById("f").value;
     }
-        parseCreatePatient(newPatientfname, newPatientlname, newPatientemail, newPatientaddress, newPatientDOB, newPatientcontact, newPatientoccupation, newPatientmedicare, newPatienthealthcare, newPatientemergname, newPatientemergcontact, gendervalue);
+
+    var errors = validatePatientForm(newPatientfname, newPatientlname, newPatientemail, gendervalue, newPatientDOB, newPatientcontact, parseInt(newPatientmedicare), parseInt(newPatienthealthcare));
+    if (errors == "") {
+       parseCreatePatient(newPatientfname, newPatientlname, newPatientemail, newPatientaddress, newPatientDOB, newPatientcontact, newPatientoccupation, parseInt(newPatientmedicare), parseInt(newPatienthealthcare), newPatientemergname, newPatientemergcontact, gendervalue);
+    } else {
+        alert(errors);
+    }    
 }
 
 function parseCreatePatient(fname, lname, email, address, dob, contact, occ, medi, health, emername, emerNo, gender) {
@@ -42,12 +48,48 @@ function parseCreatePatient(fname, lname, email, address, dob, contact, occ, med
     patient.save(null, {
       success: function(patient) {
         alert("Patient created");
+        location.reload();
       },
       error: function(patient, error) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
       }
     });
+}
+
+function validatePatientForm(fname, lname, email, gender, DOB, contactno, medicareno, healthcareno) {
+    var returnValue = "";
+    
+    if (fname == "") {
+        returnValue = returnValue.concat("First name cannot be blank\n");
+    }
+    if (lname == "") {
+        returnValue = returnValue.concat("Last name cannot be blank\n");
+    }
+    if (email == "") {
+        returnValue = returnValue.concat("Email cannot be blank\n");
+    }
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(email)) {
+        returnValue = returnValue.concat("Please enter a valid email address\n");
+    }
+    if (gender == "") {
+        returnValue = returnValue.concat("Gender cannot be blank\n");
+    }
+    if (DOB == "") {
+        returnValue = returnValue.concat("DOB cannot be blank\n");
+    }
+    if (contactno == "") {
+        returnValue = returnValue.concat("Contact number cannot be blank\n");
+    }
+    if (contactno.length <8 || contactno.length >12) {
+        returnValue = returnValue.concat("Contact number must have between 8 and 12 digits\n");
+    }
+    if (medicareno.length != 11) {
+        returnValue = returnValue.concat("Medicare number must have 11 digits\n");
+    }
+    
+    return returnValue;
 }
 
 //function to display Popup
