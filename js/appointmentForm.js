@@ -3,7 +3,14 @@ function createNewAppointmentIntoParse() {
     var newApptMedicareNo = document.getElementById("apptMedicareNo").value;
     var newApptDate = new Date(document.getElementById("apptDate").value);
     var newApptTime = document.getElementById("apptTime").value;
-        parseCreateAppointment(parseInt(newApptMedicareNo), newApptDate, newApptTime);
+
+    var errors = validateAppointmentForm(newApptDate, newApptTime);
+    if (errors == "") {
+       parseCreateAppointment(parseInt(newApptMedicareNo), newApptDate, newApptTime);
+    } else {
+        alert(errors);
+    }    
+        
 }
 
 function parseCreateAppointment(apptMedicareNo, apptDate, apptTime) {
@@ -35,6 +42,22 @@ function parseCreateAppointment(apptMedicareNo, apptDate, apptTime) {
         alert("Error: " + error.code + " " + error.message);
       }
     });
+}
+
+function validateAppointmentForm(apptDate, apptTime) {
+    var returnValue = "";
+    
+    var today = Date.now();
+
+    if (apptDate < today) {
+        returnValue = returnValue.concat("Enter valid date\n");
+    }
+
+    if (apptTime == "") {
+        returnValue = returnValue.concat("Time cannot be blank\n");
+    }
+    
+    return returnValue;
 }
 
 //function to display Appointment Popup

@@ -82,11 +82,8 @@ function validatePatientForm(fname, lname, email, gender, DOB, contactno, medica
     if (contactno == "") {
         returnValue = returnValue.concat("Contact number cannot be blank\n");
     }
-    if (contactno.length <8 || contactno.length >12) {
+    if (contactno.length <7 || contactno.length >13) {
         returnValue = returnValue.concat("Contact number must have between 8 and 12 digits\n");
-    }
-    if (medicareno.length != 11) {
-        returnValue = returnValue.concat("Medicare number must have 11 digits\n");
     }
     
     return returnValue;
