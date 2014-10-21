@@ -45,6 +45,9 @@ indexonload = function(){
                 login();
             }
         });
+
+        pic = new Image();
+        pic.src="http://www.fertllawn.com/image/loader.gif";
     }
      
     function login() {
