@@ -8,11 +8,13 @@ commonFunction = function(){
         $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'><span class='glyphicon glyphicon-user'></span> " + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
         document.getElementById("logoutButton").onclick = logout;
 
-        $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><p></p><form name='searchPatientForm'>First name: <input id='first_name_input' type='text' name='firstname'>Last name: <input id='last_name_input' type='text' name='lastname'><p></p><p id= 'searchPatientButton'><button id='search_patient_button' class='button' name='searchpatient' type='button'>Search <span class='glyphicon glyphicon-search'></span></button></p></form>");
+        $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><form name='searchPatientForm'><table id='searchPatientTable'><tr><td>First name: <input id='first_name_input' type='text' name='firstname'></td><td>Last name: <input id='last_name_input' type='text' name='lastname'></td></tr></table><p id='searchPatientButton'><button id='search_patient_button' class='button' name='searchpatient' type='button' data-toggle='tooltip' data-placement='bottom' title='Search!'>Search <span class='glyphicon glyphicon-search'></span></button></p></form>");
 
         document.getElementById("search_patient_button").onclick = searchPatient;
+        $('#search_patient_button').tooltip();
 
-        $("#home-link").after("<li id='search-link'><a href='search.html'><span class='glyphicon glyphicon-list-alt'></span> Patients</a></li><li id='im-link'><a href='instantmessage.html'><span class='glyphicon glyphicon-comment'></span> IM</a></li>");
+        $("#home-link").after("<li id='search-link'><a href='search.html' class='header-link' data-toggle='tooltip' data-placement='bottom' title='Patient Details!'><span class='glyphicon glyphicon-list-alt'></span> Patients</a></li><li id='im-link'><a href='instantmessage.html' class='header-link' data-toggle='tooltip' data-placement='bottom' title='Instant Messaging!'><span class='glyphicon glyphicon-comment'></span> IM</a></li>");
+        $('.header-link').tooltip();
 
         $('body').waypoint(function(direction) {
           if (direction == 'down') {

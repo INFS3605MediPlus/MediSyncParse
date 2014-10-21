@@ -43,6 +43,14 @@ body {
   margin-left:34.2%;
 }
 
+#searchPatientTable{
+  margin:auto;
+}
+
+#searchPatientTable tbody tr td{
+  padding:10px;
+}
+
 #logo {
     margin: 20px;
 }

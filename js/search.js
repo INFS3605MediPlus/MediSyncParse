@@ -34,8 +34,9 @@ searchonload = function(){
                 for (var i=0; i<results.length; i++){
                     var object = results[i];
                     
-                    $("#search-results-table").append("<tr><td>" + i + "</td><td><a href='patient.html?patientID=" + object.id + "'>" + object.get('First_Name') + "</a></td><td>" + object.get('Last_Name') + "</td><td>" + object.get('Contact_No') + "</td></tr>");
-                }          
+                    $("#search-results-table").append("<tr><td>" + i + "</td><td><a class='patient-result' href='patient.html?patientID=" + object.id + "' data-toggle='tooltip' data-placement='right' title='See patient details'>" + object.get('First_Name') + "</a></td><td>" + object.get('Last_Name') + "</td><td>" + object.get('Contact_No') + "</td></tr>");
+                }
+                $('.patient-result').tooltip();
             },
             error: function(error){
                 alert("No Patients Found");

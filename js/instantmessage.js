@@ -7,6 +7,13 @@ imonload = function(){
         // YOU ARE LOGGED IN
         loadIM();
         document.getElementById("post-im-button").onclick = postIM;
+        $('#post-im-button').tooltip();
+        $('#new-message').keydown(function (event) {
+            var keypressed = event.keyCode || event.which;
+            if (keypressed == 13) {
+                postIM();
+            }
+        });
 
     } else {
         // YOU ARE NOT LOGGED IN
