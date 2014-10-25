@@ -2,6 +2,7 @@
 function createNewAppointmentIntoParse() {
     var newApptMedicareNo = document.getElementById("apptMedicareNo").value;
     var newApptDate = new Date(document.getElementById("apptDate").value);
+    newApptDate.setDate(newApptDate.getDate() + 1);
     var newApptTime = document.getElementById("apptTime").value;
 
     var errors = validateAppointmentForm(newApptDate, newApptTime);
@@ -23,25 +24,26 @@ function parseCreateAppointment(apptMedicareNo, apptDate, apptTime) {
     var retrievePatientObjectID = new Parse.Query(Patient);
     retrievePatientObjectID.equalTo("Medicare_No", apptMedicareNo);
     retrievePatientObjectID.find({
-        success: function(Patient){
-            var patientObjectId = Patient.id;
+        success: function(Pats){
+            var patientObjectId = Pats[0];
             appointment.set("Patient_ID", patientObjectId);
+
+            appointment.save(null, {
+              success: function(appointment) {
+                alert("Appointment created");
+                location.reload();
+              },
+              error: function(Appointment, error) {
+                // Show the error message somewhere and let the user try again.
+                alert("Error: " + error.code + " " + error.message);
+              }
+            });
         },
         error: function(Patient, error){
             alert("Error: " + error.code + " " + error.message);
         }
     });
-    
-    appointment.save(null, {
-      success: function(appointment) {
-        alert("Appointment created");
-        location.reload();
-      },
-      error: function(appointment, error) {
-        // Show the error message somewhere and let the user try again.
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
+        
 }
 
 function validateAppointmentForm(apptDate, apptTime) {
@@ -49,7 +51,8 @@ function validateAppointmentForm(apptDate, apptTime) {
     
     var today = Date.now();
 
-    if (apptDate < today) {
+    if (apptDate.getTime() < today) {
+        
         returnValue = returnValue.concat("Enter valid date\n");
     }
 

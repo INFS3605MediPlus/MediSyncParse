@@ -25,7 +25,7 @@ indexonload = function(){
                 }          
             },
             error: function(error){
-                alert("No Calendar Entries Found");
+                alert("Error: " + error.code + " " + error.message);
             }
         });   
 
