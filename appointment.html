@@ -38,11 +38,11 @@
     <div class="container" id="patient-search-section"></div>
     
     <p id='patient-name'>Appointment for: Loading...</p>
-    <p id='apptdate-result'></p>
+    <p id='apptdate-result'></p><br>
 
     <ul class="nav nav-tabs nav-justified" role="tablist">
       <li class="active"><a data-toggle="tab" href="#red">Appointment Notes</a></li>
-      <li><a data-toggle="tab" href="#orange">Clinical Measurements Forms</a></li>
+      <li><a data-toggle="tab" href="#orange">Clinical Measurements Form</a></li>
         <li><a data-toggle="tab" href="#yellow">Documents</a></li>
     </ul>
 
@@ -108,8 +108,50 @@
           <button type="button" class="btn btn-success" id='save-button'>Save</button><br>
       </div>
       <div class="tab-pane" id="orange">
-          <h1>Orange</h1>
-          <p>orange orange orange orange orange</p>
+          <h1>Enter Clinical Measurement Form Results</h1>
+          <form class="form-horizontal" role="form" id='CMForm'>
+              <div class="form-group">
+                <label for="inputHeight" class="col-sm-2 control-label">Height</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="inputHeight" placeholder="Height">
+                </div>
+                <label for="inputWeight" class="col-sm-2 control-label">Weight</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="inputWeight" placeholder="Weight">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputBloodType" class="col-sm-2 control-label">Blood Type</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputBloodType" placeholder="Blood Type">
+                </div>
+                <label for="inputOxygenLevel" class="col-sm-2 control-label">Oxygen Level</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputOxygenLevel" placeholder="Oxygen Level">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputBloodPressure" class="col-sm-2 control-label">Blood Pressure</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputBloodPressure" placeholder="Blood Pressure">
+                </div>
+                <label for="inputHeartRate" class="col-sm-2 control-label">Heart Rate</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="inputHeartRate" placeholder="Heart Rate">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputLungFunction" class="col-sm-2 control-label">Lung Function</label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="inputLungFunction" placeholder="Lung Function">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button id='CMFormSubmit' type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </div>
+            </form>
       </div>
       <div class="tab-pane" id="yellow">
           <h1>Yellow</h1>
