@@ -6,7 +6,8 @@ indexonload = function(){
     
     if (currentUser) {
         // YOU ARE LOGGED IN
-        $("#login-form").html("<h1>Welcome to MediSync!<br>Your cloud based patient management system!</h1>");
+        $("#login-form").html("");
+        $("#logo-image").attr('src','assets/welcomelogo.png');
 
         $('#calendar').fullCalendar({
             // put your options and callbacks here

@@ -1,7 +1,3 @@
-function closePatientForm(){
-    location.reload();
-}
-
 function createNewPatientIntoParse() {
     var newPatientfname = document.getElementById("firstNameOfPatient").value;
     var newPatientlname = document.getElementById("lastNameOfPatient").value;
@@ -91,33 +87,5 @@ function validatePatientForm(fname, lname, email, gender, DOB, contactno, medica
 
 //function to display Popup
 function div_show(){ 
-document.getElementById('patientform').style.display = "block";
-}
-
-//function to check target element
-function check(e){ 
-var target = (e && e.target) || (event && event.srcElement); 
-
-var obj = document.getElementById('patientform'); 
-var obj2 = document.getElementById('add_patient_icon'); 
-
-checkParent(target)?obj.style.display='none':null; 
-target==obj2?obj.style.display='block':null; 
-
-} 
-
-//function to check parent node and return result accordingly
-function checkParent(t){ 
-	while(t.parentNode){ 
-		if(t==document.getElementById('patientform'))
-			{ 
-				return false 
-			}
-		else if(t==document.getElementById('closeButtonPatient'))
-			{
-				return true
-			} 
-		t=t.parentNode 
-	} 
-	return true 
+    document.getElementById('patientform').style.display = "block";
 }

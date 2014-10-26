@@ -1,4 +1,3 @@
-
 function createNewAppointmentIntoParse() {
     var newApptMedicareNo = document.getElementById("apptMedicareNo").value;
     var newApptDate = new Date(document.getElementById("apptDate").value);
@@ -65,5 +64,5 @@ function validateAppointmentForm(apptDate, apptTime) {
 
 //function to display Appointment Popup
 function appointment_show(){ 
-document.getElementById('appointmentform').style.display = "block";
+    document.getElementById('appointmentform').style.display = "block";
 }
