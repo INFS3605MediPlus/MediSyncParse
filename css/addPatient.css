@@ -68,24 +68,21 @@ cursor: pointer;
 
 img#add_patient_icon{
 position: absolute;
-right: 70px;
-top: 393px;
+right: 6%;
 cursor: pointer;
 width: 43px;
 }
 
 img#add_user_icon{
 position: absolute;
-right: 150px;
-top: 393px;
+right: 11.5%;
 cursor: pointer;
 width: 43px;	
 }
 
 img#add_appointment_icon{
 position: absolute;
-right: 230px;
-top: 393px;
+right: 17%;
 cursor: pointer;
 width: 43px;	
 }
