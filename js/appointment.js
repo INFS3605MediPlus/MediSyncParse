@@ -18,18 +18,22 @@ appointmentonload = function(){
     }
 
     function searchSingleAppointmentParse() {        
-        var Patient = Parse.Object.extend("Appointment");  
+        var Appointment = Parse.Object.extend("Appointment");  
         var query = new Parse.Query(Appointment);
-        var appointmentID = getURLParameter("appointmentID");
+        var appointmentID = getURLParameter("id");
         if (appointmentID == null) appointmentID = "";
-        query.equals("objectId", appointmentID);
+        query.equalTo("objectId", appointmentID);
+        query.include("Patient_ID");
         query.find({
             success: function(results){
                 // do stuff with appointment
-                var object = results[0];
+                var appt = results[0];
+                var patient = appt.get("Patient_ID");
+                $('#patient-name').html("Appointment for: <a href='patient.html?patientID=" + patient.id + "'>" + patient.get('First_Name') + ' ' + patient.get('Last_Name') + "</a>");
+                $('#apptdate-result').text(appt.get('Appointment_Date'));
             },
             error: function(error){
-                alert("No Appointments Found");
+                alert(error.message);
             }
         });       
     }

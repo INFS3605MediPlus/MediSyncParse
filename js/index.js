@@ -16,14 +16,25 @@ indexonload = function(){
         
         var Appointment = Parse.Object.extend("Appointment");
         var query = new Parse.Query(Appointment);
+        // filter for this particular doctor!
+        query.include("Patient_ID");
         // filter query for this particular user
         query.find({
             success: function(results){
+                var source = [];
                 for (var i=0; i<results.length; i++){
-                    var object = results[i];
+                    var appt = results[i];
+                    var patient = appt.get("Patient_ID");
+                    event = new Object();
+                    event.title = patient.get('First_Name') + ' ' + patient.get('Last_Name'); // this should be string
+                    event.start = appt.get('Appointment_Date'); // this should be date object
+                    event.end = appt.get('Appointment_Date');
+                    event.url = 'appointment.html?id=' + appt.id;
                     
                     // put object into $('#calendar')
-                }          
+                    source.push(event);
+                }
+                $('#calendar').fullCalendar( 'addEventSource', source )
             },
             error: function(error){
                 alert("No Calendar Entries Found");

@@ -29,11 +29,13 @@ searchonload = function(){
         
         queryFirstname.startsWith("First_Name", queryVal);
         queryFirstname.limit(5);
-        
         queryLastname.startsWith("Last_Name", queryVal);
         queryLastname.limit(5);
         
-        queryMedicare.equalTo("Medicare_No", Number(queryVal));
+        if (!isNaN(queryVal)) {
+            queryVal = Number(queryVal);
+        }
+        queryMedicare.equalTo("Medicare_No", queryVal);
         queryMedicare.limit(1);
         
         var mainQuery = Parse.Query.or(queryFirstname, queryLastname, queryMedicare);
@@ -47,7 +49,7 @@ searchonload = function(){
                 $('.patient-result').tooltip();
             },
             error: function(error){
-                alert("No Patients Found");
+                alert(error.message);
             }
         });       
     }

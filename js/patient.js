@@ -36,7 +36,7 @@ patientonload = function(){
                 $('#medi-result').text(pat.get('Medicare_No'));
             },
             error: function(error){
-                alert("No Patients Found");
+                alert(error.message);
             }
         });       
     }

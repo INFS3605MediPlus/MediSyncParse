@@ -8,7 +8,8 @@ commonFunction = function(){
         $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'><span class='glyphicon glyphicon-user'></span> " + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
         document.getElementById("logoutButton").onclick = logout;
 
-        $("#patient-search-section").html("<form id='searchForm' class='form-wrapper cf'><input id='searchText' type='text' placeholder='Search Patient by First name, Last name or Medicare No...' required><button type='submit' id='search_patient_button' data-toggle='tooltip' data-placement='bottom' title='Search'>Search</button><img id='add_patient_icon' src='assets/add_patient_icon.png' onclick ='div_show()'/><img id='add_user_icon' src='assets/add_new_user_icon.png' onclick ='user_show()'/><img id='add_appointment_icon' src='assets/add_appointment.png' onclick ='appointment_show()'/></form>");
+        $("#patient-search-section").html("<form id='searchForm' class='form-wrapper cf'><input id='searchText' type='text' placeholder='Search Patient by First name, Last name or Medicare No...' required><button type='submit' id='search_patient_button' data-toggle='tooltip' data-placement='bottom' title='Search'>Search</button><img id='add_patient_icon' src='assets/add_patient_icon.png' onclick ='div_show()' class='add-icons' data-toggle='tooltip' data-placement='bottom' title='Add patient!'/><img id='add_user_icon' src='assets/add_new_user_icon.png' onclick ='user_show()' class='add-icons' data-toggle='tooltip' data-placement='bottom' title='Add user!'/><img id='add_appointment_icon' src='assets/add_appointment.png' onclick ='appointment_show()' class='add-icons' data-toggle='tooltip' data-placement='bottom' title='Add appointment!'/></form>");
+        $('.add-icons').tooltip();
         
         $("#search_patient_button").click(function(event) {
             event.preventDefault(); // cancel default behavior
@@ -75,7 +76,11 @@ function checktest(e){
 
 function capitaliseFirstLetter(string)
 {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    if (string != null) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    } else {
+        return "";
+    }
 }
 
 function addLoadEvent(func) {
