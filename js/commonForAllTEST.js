@@ -35,6 +35,25 @@ commonFunction = function(){
     }
 };
 
+$(function() {
+
+    var Patient = Parse.Object.extend("Patient");
+    var query = new Parse.Query(Patient);
+    query.select("First_Name");
+    query.find({
+    success: function(results) {
+      var patientName = results;
+    },
+    error: function(error) {
+      alert("Error: " + error.code + " " + error.message);
+    }
+    $( "#apptPatientName" ).autocomplete({
+      source: patientName
+    });
+  });
+   
+  });
+
 function addLoadEvent(func) {
   var oldonload = window.onload;
   if (typeof window.onload != 'function') {
