@@ -8,7 +8,7 @@ commonFunction = function(){
         $("#user-dropdown").html("<a href='#' data-toggle='dropdown' class='dropdown-toggle'><span class='glyphicon glyphicon-user'></span> " + currentUser.get('Staff_First_Name') + " <b class='caret'></b></a><ul class='dropdown-menu'><li><a href='#'>Dropdown 1</a></li><li><a href='#'>Dropdown 2</a></li><li><a href='#' id='logoutButton'>Log Out</a></li></ul>");
         document.getElementById("logoutButton").onclick = logout;
 
-        $("#patient-search-section").html("<h2 id='searchPatientHeading'>Search Patient</h2><form name='searchPatientForm'><table id='searchPatientTable'><tr><td>First name: <input id='first_name_input' type='text' name='firstname'></td><td>Last name: <input id='last_name_input' type='text' name='lastname'></td></tr></table><p id='searchPatientButton'><button id='search_patient_button' class='button' name='searchpatient' type='button' data-toggle='tooltip' data-placement='bottom' title='Search!'>Search <span class='glyphicon glyphicon-search'></span></button></p></form>");
+        $("#patient-search-section").html("<form class='form-wrapper cf'><input type='text' placeholder='Search Patient by First name, Last name or Medicare No...'  required><button type='submit' id='search_patient_button'>Search</button><img id='add_patient_icon' src='assets/add_patient_icon.png' onclick ='div_show()'/><img id='add_user_icon' src='assets/add_new_user_icon.png' onclick ='user_show()'/><img id='add_appointment_icon' src='assets/add_appointment.png' onclick ='appointment_show()'/></form>");
 
         document.getElementById("search_patient_button").onclick = searchPatient;
         $('#search_patient_button').tooltip();
