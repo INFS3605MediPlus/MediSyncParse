@@ -41,7 +41,7 @@ display: none;
 position: fixed;			
 background-color: #313131;
 overflow:auto;
-z-index: 1;
+z-index: 2;
 
 }
 
@@ -130,7 +130,6 @@ text-align: right;
 }
  
 #roleDropdown{
-width:70%;
 margin-top: 7px;
 border: 1px solid #ccc;
 font-size: 14px;
@@ -139,7 +138,6 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=text]{
-width:70%;
 margin-top: 7px;
 border: 1px solid #ccc;
 font-size: 14px;
@@ -148,7 +146,6 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=password]{
-width:70%;
 margin-top: 7px;
 border: 1px solid #ccc;
 font-size: 14px;
@@ -157,7 +154,6 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=date]{
-width:70%;
 margin-top: 15px;
 border: 1px solid #ccc;
 font-size: 14px;
@@ -166,7 +162,6 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=time]{
-width:70%;
 margin-top: 15px;
 border: 1px solid #ccc;
 font-size: 14px;
@@ -175,7 +170,6 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=number]{
-width:70%;
 margin-top: 7px;
 border: 1px solid #ccc;
 font-size: 14px;
@@ -221,4 +215,20 @@ color:white;
 font-family: 'Raleway', sans-serif;
 font-size:16px;
 cursor:pointer;
+}
+
+.tt-dropdown-menu {
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 0;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
