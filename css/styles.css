@@ -280,3 +280,9 @@ body {
   z-index: 2;
   width: calc(100% - 50px);
 }
+
+#patient-name {
+    font-size: 3em;
+    text-align: left;
+    margin: 0;
+}

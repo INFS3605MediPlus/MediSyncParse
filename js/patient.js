@@ -22,11 +22,18 @@ patientonload = function(){
         var query = new Parse.Query(Patient);
         var patientID = getURLParameter("patientID");
         if (patientID == null) patientID = "";
-        query.equals("objectId", patientID);
+        query.equalTo("objectId", patientID);
         query.find({
             success: function(results){
                 // do stuff with patient
-                var object = results[0];
+                var pat = results[0];
+                $('#patient-name').text(pat.get('First_Name') + ' ' + pat.get('Last_Name'));
+                $('#patient-result').text(pat.get('First_Name') + ' ' + pat.get('Last_Name'));
+                $('#number-result').text(pat.get('Contact_No'));
+                $('#dob-result').text(pat.get('DOB'));
+                $('#emerg-result').text(pat.get('Emergency_Contact_No'));
+                $('#address-result').text(pat.get('Address'));
+                $('#medi-result').text(pat.get('Medicare_No'));
             },
             error: function(error){
                 alert("No Patients Found");
