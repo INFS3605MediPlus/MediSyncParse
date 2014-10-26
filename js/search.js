@@ -18,7 +18,7 @@ searchonload = function(){
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
     }
 
-    function searchPatientParse() {        
+    function searchPatientParse() {
         var Patient = Parse.Object.extend("Patient");
         var queryFirstname = new Parse.Query(Patient);
         var queryLastname = new Parse.Query(Patient);

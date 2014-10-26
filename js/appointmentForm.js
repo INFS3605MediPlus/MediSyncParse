@@ -1,4 +1,5 @@
 function createNewAppointmentIntoParse() {
+    $('#createNewAppointmentButton').attr('disabled','disabled');
     var newApptMedicareNo = document.getElementById("apptMedicareNo").value;
     var newApptDate = new Date(document.getElementById("apptDate").value);
     newApptDate.setDate(newApptDate.getDate() + 1);
@@ -9,6 +10,7 @@ function createNewAppointmentIntoParse() {
        parseCreateAppointment(parseInt(newApptMedicareNo), newApptDate, newApptTime);
     } else {
         alert(errors);
+        $('#createNewAppointmentButton').removeAttr('disabled');
     }    
         
 }
@@ -35,11 +37,13 @@ function parseCreateAppointment(apptMedicareNo, apptDate, apptTime) {
               error: function(Appointment, error) {
                 // Show the error message somewhere and let the user try again.
                 alert("Error: " + error.code + " " + error.message);
+                $('#createNewAppointmentButton').removeAttr('disabled');
               }
             });
         },
         error: function(Patient, error){
             alert("Error: " + error.code + " " + error.message);
+            $('#createNewAppointmentButton').removeAttr('disabled');
         }
     });
         

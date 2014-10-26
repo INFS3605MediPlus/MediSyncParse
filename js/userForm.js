@@ -1,4 +1,5 @@
 function createNewUserIntoParse() {
+    $('#createNewUserButton').attr('disabled','disabled');
     var newUserfname = document.getElementById("firstNameOfUser").value;
     var newUserlname = document.getElementById("lastNameOfUser").value;
     var newUseremail = document.getElementById("emailOfUser").value;
@@ -14,6 +15,7 @@ function createNewUserIntoParse() {
         parseCreateUser(newUserfname, newUserlname, newUsercontactno, newUserSelectedRole, newUseremail, newUserpassword);
     } else {
         alert(errors);
+        $('#createNewUserButton').removeAttr('disabled');
     }
 }
 
@@ -25,17 +27,37 @@ function parseCreateUser(fname, lname, contactno, stafftype, email, pw) {
     user.set("username", email);
     user.set("email", email);
     user.set("Staff_Contact_No", contactno);
-    user.set("Staff_Type", stafftype);
     user.set("password", pw);
       
     user.save(null, {
-      success: function(user) {
-        alert("User created");
-        location.reload();
+      success: function(userToAdd) {
+        var query = new Parse.Query(Parse.Role);
+        query.equalTo("name", stafftype);
+        query.first({
+          success: function(extractedRole) {
+             extractedRole.getUsers().add(userToAdd);
+             extractedRole.save().then(function(ss) {
+                alert("User added to role");
+                location.reload();
+             }, function(error) {
+                alert("Error: " + error.code + " " + error.message);
+                $('#createNewUserButton').removeAttr('disabled');
+             });
+             
+          },
+          error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+            $('#createNewUserButton').removeAttr('disabled');
+          }
+        });
+          
+          
+          
       },
       error: function(user, error) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
+        $('#createNewUserButton').removeAttr('disabled');
       }
     });
 }

@@ -1,4 +1,5 @@
 function createNewPatientIntoParse() {
+    $('#createNewPatientButton').attr('disabled','disabled');
     var newPatientfname = document.getElementById("firstNameOfPatient").value;
     var newPatientlname = document.getElementById("lastNameOfPatient").value;
     var newPatientemail = document.getElementById("emailOfPatient").value;
@@ -22,6 +23,7 @@ function createNewPatientIntoParse() {
        parseCreatePatient(newPatientfname, newPatientlname, newPatientemail, newPatientaddress, newPatientDOB, newPatientcontact, newPatientoccupation, parseInt(newPatientmedicare), parseInt(newPatienthealthcare), newPatientemergname, newPatientemergcontact, gendervalue);
     } else {
         alert(errors);
+        $('#createNewPatientButton').removeAttr('disabled');
     }    
 }
 
@@ -44,11 +46,12 @@ function parseCreatePatient(fname, lname, email, address, dob, contact, occ, med
     patient.save(null, {
       success: function(patient) {
         alert("Patient created");
-        location.reload();
+        window.location.href="patient.html?patientID=" + patient.id;
       },
       error: function(patient, error) {
         // Show the error message somewhere and let the user try again.
         alert("Error: " + error.code + " " + error.message);
+        $('#createNewPatientButton').removeAttr('disabled');
       }
     });
 }

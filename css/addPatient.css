@@ -196,8 +196,7 @@ margin-top: 15px;
 margin-left: 20px;
 }
 
-
-#createNewPatientButton {
+.createNewButton {
 text-decoration:none;
 width:25%;
 height: 30px;

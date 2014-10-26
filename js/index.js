@@ -37,7 +37,7 @@ indexonload = function(){
                 $('#calendar').fullCalendar( 'addEventSource', source )
             },
             error: function(error){
-                alert("No Calendar Entries Found");
+                alert(error.message);
             }
         });
 
@@ -57,9 +57,6 @@ indexonload = function(){
                 login();
             }
         });
-
-        pic = new Image();
-        pic.src="http://www.fertllawn.com/image/loader.gif";
     }
      
     function login() {
