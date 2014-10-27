@@ -28,3 +28,7 @@ function parseCreateDoc(type, desc, file) {
     });
 }
 
+//function to display Popup
+function document_show(){ 
+    document.getElementById('docform').style.display = "block";
+}
