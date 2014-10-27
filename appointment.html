@@ -46,8 +46,8 @@
         <div class="tab-pane active" id="red">
             <style type="text/css">
               .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
-              .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-              .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+              .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+              .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
               .tg .tg-7ttm{font-size:50px;text-align:center}
               .tg .tg-ulvc{font-size:50px}
             </style>
@@ -61,28 +61,43 @@
             </tr>
             <tr>
               <td class="tg-031e">First Name</td>
-              <td class="tg-031e"></td>
-              <td class="tg-031e" colspan="2" rowspan="5"></td>
+              <td class="tg-031e"><input label </td>
+              <td class="tg-031e" colspan="2" rowspan="5">
+            <b>Please tick the following that is applicable</b>
+            <br>
+            <br>
+            <input type="checkbox" name="Test1" value="General Admission"> General Admission
+            <br>
+            <input type="checkbox" name="Test2" value="Lung Test"> Lung Test
+            <br>
+            <input type="checkbox" name="Test3" value="Oxygen Level">Oxygen Level Test 
+            <br>
+            <input type="checkbox" name="Test4" value="Weight">Weight Test
+            <br>
+            <input type="checkbox" name="Test5" value="Blood Pressure">Blood Pressure Test 
+            <br>
+            <input type="checkbox" name="Test6" value="Blood Test">Blood Test
+            <br>
+              </td>
             </tr>
             <tr>
               <td class="tg-031e">Last Name</td>
-              <td class="tg-031e"></td>
-            </tr>
-            <tr>
-              <td class="tg-031e">Contact No.</td>
-              <td class="tg-031e"></td>
-            </tr>
-            <tr>
-              <td class="tg-031e">Payment Type</td>
               <td class="tg-031e"><input label </td>
             </tr>
             <tr>
-              <td class="tg-031e">Total Amount</td>
-              <td class="tg-031e"></td>
+              <td class="tg-031e">Contact No.</td>
+              <td class="tg-031e"><input label </td>
             </tr>
             <tr>
-              <td class="tg-031e" colspan="4"></td>
-              qweqwe
+              <td class="tg-031e">Payment Type</td>
+              <td class="tg-031e"><select id="paymentDropdown"><option value="Select">Select</option><option value="Credit Card">Credit Card</option><option value="Cash">Cash</option><option value="Cheque">Cheque</option></select>
+            </tr>
+            <tr>
+              <td class="tg-031e">Total Amount</td>
+              <td class="tg-031e"><textarea readonly name="totalAmount" id="totalPayment"> </textarea></td>
+            </tr>
+            <tr>
+              <td class="tg-031e" colspan="4"><button id = "createPaymentButton" type="button" onclick ="createNewPaymentIntoParse()">Pay</button></td>
             </tr>
           </table>
         </div>
