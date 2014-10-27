@@ -54,7 +54,11 @@ patientonload = function(){
             success: function(results){
                 for (var i=0; i < results.length; i++) {
                     var appt = results[i];
-                    var notes = appt.get("Clinical_Detail_ID").get("Clinical_Notes");
+                    if (appt.get("Clinical_Detail_ID")) {
+                        var notes = appt.get("Clinical_Detail_ID").get("Clinical_Notes");
+                    } else {
+                        var notes = "";
+                    }
                     var specialist = appt.get("Specialist_ID").get("Staff_First_Name") + ' ' + appt.get("Specialist_ID").get("Staff_Last_Name");
                     $("#appt-results-table").append("<tr><td>" + i + "</td><td><a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a></td><td>" + specialist + "</td><td>" + notes + "</td></tr>");
                     $('.appt-result').tooltip();
