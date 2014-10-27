@@ -21,8 +21,10 @@
   <script type="text/javascript" src="js/appointment.js"></script>
   <script type="text/javascript" src="js/patientForm.js"></script>
   <script type="text/javascript" src="js/userForm.js"></script>
+  <script type="text/javascript" src="js/documentForm.js"></script>
   <script type="text/javascript" src="js/appointmentForm.js"></script>
   <script type="text/javascript" src="js/typeahead.bundle.js"></script>
+  <script type="text/javascript" src="js/document.js"></script>
   <link rel="icon" type="image/png" href="assets/favicon.png">
   
 </head>
@@ -155,8 +157,20 @@
             </form>
       </div>
       <div class="tab-pane" id="yellow">
-          <h1>Yellow</h1>
-          <p>yellow yellow yellow yellow yellow</p>
+          <h1>Documents</h1>
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Document Type</th>
+                  <th>Document Description</th>
+                </tr>
+              </thead>
+              <tbody id="document-results-table"></tbody>
+            </table>
+
+            <button id = 'createNewDocumentButton' class='createNewButton' type='button' onclick ='document_show()'>Add</button>
+
+            <div id ='documentform'><form action='#' class='addPatientForm'> <img src='assets/3.png' id='closeButtonAppointment'/> <h2>Add new Document</h2><hr/> <label for='labelDocType'>Document Type:</label> <select id='docDropdown'><option value='Select'>Select</option><option value='Invoice'>Invoice</option><option value='Referal GP Letter'>Referal GP Letter</option><option value='Test Results'>Test Results</option></select> <br> <label for='labelDocDesc'>Document Description:</label> <input type='text' name='docDesc' id='docDesc'/> <br> <input type='file' name='docFile' id='docFile'/> <br> <button id = 'createNewDocButton' class='createNewButton' type='button' onclick ='createNewDocIntoParse()'>Add</button> </form></div></div></div>
       </div>
     </div>
 
