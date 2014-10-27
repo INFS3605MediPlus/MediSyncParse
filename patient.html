@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/searchPatientTEST.css">
   <link rel="stylesheet" href="css/addPatient.css">
+  <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
   <script type="text/javascript" src="js/commonForAll.js"></script>
   <script type="text/javascript" src="js/patient.js"></script>
@@ -19,6 +20,9 @@
   <script type="text/javascript" src="js/userForm.js"></script>
   <script type="text/javascript" src="js/appointmentForm.js"></script>
   <script type="text/javascript" src="js/typeahead.bundle.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+  
   <link rel="icon" type="image/png" href="assets/favicon.png">
   
 </head>
@@ -62,16 +66,34 @@
     <ul class="nav nav-tabs nav-justified" role="tablist">
       <li class="active"><a data-toggle="tab" href="#red">Admin Details</a></li>
       <li><a data-toggle="tab" href="#orange">Appointment Details</a></li>
+      <li><a data-toggle="tab" href="#yellow">Payment</a></li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="red">
           <h1>Red</h1>
-          <p>red red red red red red</p>
+          <p>Put the following information here: health care info, any GP data, AND a graph about their weight etc.</p>
       </div>
       <div class="tab-pane" id="orange">
           <h1>Orange</h1>
-          <p>orange orange orange orange orange</p>
+          <p>Put the following information here: Every appointment details, and maybe a search with it</p>
+          <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date/Time</th>
+                  <th>Specialist</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="appt-results-table">
+              </tbody>
+            </table>
+        </table>
+      </div>
+      <div class="tab-pane" id="yellow">
+          <h1>Yellow</h1>
+          <p>Put the following information here: Billing info, Payment Info, and allow for new payment</p>
       </div>
     </div>
 

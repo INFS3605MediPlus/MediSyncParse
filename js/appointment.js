@@ -8,6 +8,7 @@ appointmentonload = function(){
         searchSingleAppointmentParse();
         
         document.getElementById("save-button").onclick = savenotes;
+        document.getElementById("done-button").onclick = donenotes;
 
     } else {
         // YOU ARE NOT LOGGED IN
@@ -154,6 +155,10 @@ appointmentonload = function(){
             alert("Error: " + error.code + " " + error.message);
             $('#save-button').removeAttr('disabled');
         });
+    }
+    
+    function donenotes() {
+        window.location.reload();
     }
 };
 
