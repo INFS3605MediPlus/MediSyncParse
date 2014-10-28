@@ -143,10 +143,10 @@ patientonload = function(){
                         heightWeightData.push([created,height,weight]);
                     }
                 }
-                if(heartLungData.length != 1) {
+                if(heartLungData.length != 0) {
                     loadGoogleChart(heartLungData, 'chart_div', 'Heart Rate and Lung Function Data', 'Heart Rate', 'Lung Function');
                 }
-                if(heightWeightData.length != 1) {
+                if(heightWeightData.length != 0) {
                     loadGoogleChart(heightWeightData, 'chart_div2', 'Height and Weight Data', 'Height', 'Weight');
                 }
             },
