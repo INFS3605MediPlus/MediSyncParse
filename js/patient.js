@@ -55,33 +55,42 @@ patientonload = function(){
                         alert(error.message);
                     }
                 });
-                /*
-                // patient-log append:
-                <table class="table table-bordered table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Appointment Date/Time</th>
-                          <th>Creator</th>
-                          <th>Date/Time Created</th>
-                        </tr>
-                      </thead>
-                      <tbody id="appt-log-results-table">
-                      </tbody>
-                    </table>
-                </table>
-                */
+                
+                // add edit patient button
+                $('#patient-name').append("<button type='button' class='btn btn-warning' id='edit-patient-button'>Edit Patient</button>");
+                $("#edit-patient-button").click(
+                  function(event) {
+                    event.preventDefault();
+                    var patientID = getURLParameter("patientID");
+                    if (patientID == null) patientID = "";
+                    window.location.href = "editpatient.html?patientid=" + patientID;
+                  }
+                );
+            }
+        });
+        
+        
+        var query = (new Parse.Query(Parse.Role));
+        query.equalTo("name", "Receptionist");
+        query.equalTo("users", Parse.User.current());
+        query.first().then(function(receptionistRole) {
+            if (receptionistRole) {
+                // add edit patient button
+                $('#patient-name').append("<button type='button' class='btn btn-warning' id='edit-patient-button'>Edit Patient</button>");
+                $("#edit-patient-button").click(
+                  function(event) {
+                    event.preventDefault();
+                    var patientID = getURLParameter("patientID");
+                    if (patientID == null) patientID = "";
+                    window.location.href = "editpatient.html?patientid=" + patientID;
+                  }
+                );
             }
         });
 
     } else {
         // YOU ARE NOT LOGGED IN
         window.location.href = "index.html";
-    }
-    
-    
-    function getURLParameter(name) {
-        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
     }
 
     function searchSinglePatientParse(patientID) {        
@@ -92,7 +101,8 @@ patientonload = function(){
             success: function(results){
                 // do stuff with patient
                 var pat = results[0];
-                $('#patient-name').text(pat.get('First_Name') + ' ' + pat.get('Last_Name'));
+                if (pat == null) alert('Careful with your patientID!');
+                $('#patient-name').prepend(pat.get('First_Name') + ' ' + pat.get('Last_Name') + '  ');
                 $('#patient-result').text(pat.get('First_Name') + ' ' + pat.get('Last_Name'));
                 $('#number-result').text(pat.get('Contact_No'));
                 $('#dob-result').text(pat.get('DOB'));

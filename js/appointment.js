@@ -102,7 +102,12 @@ appointmentonload = function(){
                 $('#patient-name').html("Appointment for: <a href='patient.html?patientID=" + patient.id + "'>" + patient.get('First_Name') + ' ' + patient.get('Last_Name') + "</a> with Dr. " + specialist.get('Staff_First_Name') + ' ' + specialist.get('Staff_Last_Name'));
                 $('#apptdate-result').text(appt.get('Appointment_Date'));
                 $('#apptdate-result').append("<button type='button' class='btn btn-warning' id='cancel-appt-button'>Cancel Appointment</button>");
-                document.getElementById("cancel-appt-button").onclick = cancelAppointment;
+                $("#cancel-appt-button").click(
+                  function(event) {
+                    event.preventDefault();
+                    cancelAppointment(patient.id);
+                  }
+                );
                 
                 if (clinicalDetails != null) {
                     $('#red').html("<h1>Notes</h1><div id='editor'>Loading&hellip;</div>");
@@ -260,7 +265,7 @@ appointmentonload = function(){
         });
     }
     
-    function cancelAppointment() {
+    function cancelAppointment(patientid) {
         $('#cancel-appt-button').attr('disabled','disabled');
         var Appointment = Parse.Object.extend("Appointment");
         var query = new Parse.Query(Appointment);
@@ -275,7 +280,7 @@ appointmentonload = function(){
                 appt.save().then(function(ss) {
                     // go back to course page
                     alert("Appointment cancelled!");
-                    window.location.href = "index.html";
+                    window.location.href = "patient.html?patientID=" + patientid;
                 }, function(error) {
                     alert("Error: " + error.code + " " + error.message);
                     $('#cancel-appt-button').removeAttr('disabled');

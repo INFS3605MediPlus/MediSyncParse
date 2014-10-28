@@ -42,7 +42,7 @@
     
     <div class="container" id="patient-search-section"></div>
 
-    <p id='patient-name'>Loading...</p>
+    <p id='patient-name'></p>
 
     <table class="table table-bordered" id='patient-admin-details'>
       <tbody>
@@ -76,7 +76,16 @@
     <div class="tab-content">
       <div class="tab-pane active" id="red">
           <h1>Admin Details</h1>
-          <p>Put the following information here: health care info, any GP data, AND a graph about their weight etc.</p>
+          <table class="table table-bordered" id='referring-gp-details'>
+              <tbody>
+                <tr class="active">
+                  <td>Referring GP Name:</td>
+                  <td id='gp-name-result'></td>
+                  <td>Letter from GP:</td>
+                  <td id='gp-letter-result'></td>
+                </tr>
+              </tbody>
+            </table>
           <div id="chart_div" class='charts'></div>
           <div id="chart_div2" class='charts'></div>
       </div>
