@@ -11,7 +11,11 @@ indexonload = function(){
 
         $('#calendar').fullCalendar({
             // put your options and callbacks here
-            weekends: false
+            header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			}, eventLimit: true, weekends: false
         });
         
         var query = (new Parse.Query(Parse.Role));
