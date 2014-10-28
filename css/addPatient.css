@@ -28,7 +28,10 @@ position: fixed;
 background-color: #313131;
 overflow:auto;
 z-index: 1;
+}
 
+#apptPatient {
+    margin-top: 15px;
 }
 
 #appointmentform{
@@ -126,14 +129,14 @@ display:inline-block;
 .addPatientForm label{
 float:left;
 margin-top: 1px;
-padding:3px;
+padding:4px;
 height:22px;
 width:130px;
 text-align: right;
 }
  
 #roleDropdown{
-margin-top: 7px;
+margin-top: 2px;
 height:30px;
 float:right;
 width:270px;
@@ -144,7 +147,7 @@ border-radius: 5px;
 }
 
 #genderDropdown{
-margin-top: 7px;
+margin-top: 2px;
 height:30px;
 float:right;
 width:270px;
@@ -166,7 +169,7 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=password]{
-margin-top: 3px;
+margin-top: 5px;
 float:right;
 height:25px;
 width:270px;
