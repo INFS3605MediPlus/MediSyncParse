@@ -101,18 +101,28 @@ appointmentonload = function(){
                 var clinicalDetails = appt.get("Clinical_Detail_ID");
                 $('#patient-name').html("Appointment for: <a href='patient.html?patientID=" + patient.id + "'>" + patient.get('First_Name') + ' ' + patient.get('Last_Name') + "</a> with Dr. " + specialist.get('Staff_First_Name') + ' ' + specialist.get('Staff_Last_Name'));
                 $('#apptdate-result').text(appt.get('Appointment_Date'));
-                $('#apptdate-result').append("<button type='button' class='btn btn-warning' id='cancel-appt-button'>Cancel Appointment</button>");
-                $("#cancel-appt-button").click(
-                  function(event) {
-                    event.preventDefault();
-                    cancelAppointment(patient.id);
-                  }
-                );
+                if (!appt.get("isCancelled")) {
+                    $('#apptdate-result').append("<button type='button' class='btn btn-warning' id='cancel-appt-button'>Cancel Appointment</button>");
+                    $("#cancel-appt-button").click(
+                      function(event) {
+                        event.preventDefault();
+                          if (confirm('Are you sure you want to cancel this appointment?')){
+                           cancelAppointment(patient.id);
+                        }
+                        return false;
+                      }
+                    );
+                } else {
+                    $('#apptdate-result').append("<h3>Appointment has been cancelled</h3>");
+                    $("#upload-new-document").html('');
+                }
                 
                 if (clinicalDetails != null) {
-                    $('#red').html("<h1>Notes</h1><div id='editor'>Loading&hellip;</div>");
+                    $('#red').html("<h1>Notes</h1><div id='editor'>&hellip;</div>");
                     var notes = clinicalDetails.get('Clinical_Notes');
                     $('#editor').html(notes);
+                } else if (appt.get("isCancelled")) {
+                    $('#red').html("<h1>Notes</h1><div id='editor'>No notes were taken</div>");
                 } else {
                     $('#editor').wysiwyg();
                     $('#editor').html("Please enter your new notes here");
@@ -120,7 +130,7 @@ appointmentonload = function(){
                 
                 
                 var CMForm = appt.get("Clinical_MForm_ID");
-                if (CMForm != null) {
+                if ((CMForm != null) || appt.get("isCancelled")) {
                     // set table values with clinical measurement form results
                     $('#orange').html("<h1>Clinical Measurement Form Result</h1><table class='table table-bordered' id='clinical-measurement-details'><tbody><tr class='active'><td>Weight:</td><td id='weight-result'></td><td>Height:</td><td id='height-result'></td></tr><tr class='active'><td>Blood Type:</td><td id='blood-type-result'></td><td>Oxygen Level:</td><td id='oxygen-result'></td></tr><tr class='active'><td>Blood Pressure:</td><td id='blood-pressure-result'></td><td>Heart Rate:</td><td id='heart-rate-result'></td></tr><tr class='active'><td>Lung Function:</td><td id='lung-result'></td></tr></tbody></table>");
                     $('#weight-result').text(CMForm.get('Weight'));
@@ -277,6 +287,8 @@ appointmentonload = function(){
                 // do stuff with appointment
                 var appt = results[0];
                 appt.set("isCancelled",true);
+                appt.set("whoCancelled",currentUser);
+                appt.set("cancelledDate",new Date());
                 appt.save().then(function(ss) {
                     // go back to course page
                     alert("Appointment cancelled!");

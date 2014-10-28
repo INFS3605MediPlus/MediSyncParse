@@ -23,7 +23,7 @@ patientonload = function(){
                 $('.tab-content').append("<div class='tab-pane' id='patient-log'><h1>Patient Log</h1></div>");
                 $('#tablist').append("<li><a data-toggle='tab' href='#patient-log'><span class='glyphicon glyphicon-folder-open'></span> Patient Log</a></li>");
                 $('#patient-log').append("<p id='patient-time'>Time patient file was created: </p>");
-                $('#patient-log').append("<table class='table table-bordered table-hover'><thead><tr><th>#</th><th>Appointment Date/Time</th><th>Creator</th><th>Date/Time Created</th><th>Appointment Cancelled?</th></tr></thead><tbody id='appt-log-results-table'></tbody></table></table>");
+                $('#patient-log').append("<table class='table table-bordered table-hover'><thead><tr><th>#</th><th>Appointment Date/Time</th><th>Executor</th><th>Date/Time Created</th><th>Action Performed</th></tr></thead><tbody id='appt-log-results-table'></tbody></table></table>");
                 
                 var Patient = Parse.Object.extend("Patient");  
                 var query = new Parse.Query(Patient);
@@ -38,12 +38,23 @@ patientonload = function(){
                         var query = new Parse.Query(Appointment);
                         query.equalTo("Patient_ID", pat);
                         query.include("Creator");
-                        query.descending("createdAt");
+                        query.include("whoCancelled");
+                        query.descending("updatedAt");
                         query.find({
                             success: function(results){
                                 for (var i=0; i < results.length; i++) {
                                     var appt = results[i];
-                                    $("#appt-log-results-table").append("<tr><td>" + i + "</td><td><a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a></td><td>" + appt.get('Creator').get('Staff_First_Name') + ' ' + appt.get('Creator').get('Staff_Last_Name') + "</td><td>" + appt.createdAt + "</td><td>" + appt.get('isCancelled') + "</td></tr>");
+                                    if (appt.get('isCancelled')) {
+                                        var executor = appt.get('whoCancelled');
+                                        var actionTaken = "Appointment Cancelled";
+                                        var apptDate = appt.get('Appointment_Date');
+                                        $("#appt-log-results-table").append("<tr><td>" + i + "</td><td>" + apptDate + "</td><td>" + executor.get('Staff_First_Name') + ' ' + executor.get('Staff_Last_Name') + "</td><td>" + appt.createdAt + "</td><td>" + actionTaken + "</td></tr>");
+                                    } else {
+                                        var apptDate = "<a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a>";
+                                    }
+                                    var executor = appt.get('Creator');
+                                    var actionTaken = "Appointment Created";
+                                    $("#appt-log-results-table").append("<tr><td>" + i + "</td><td>" + apptDate + "</td><td>" + executor.get('Staff_First_Name') + ' ' + executor.get('Staff_Last_Name') + "</td><td>" + appt.createdAt + "</td><td>" + actionTaken + "</td></tr>");
                                 }
                             },
                             error: function(error){
@@ -145,7 +156,7 @@ patientonload = function(){
                     $('.appt-result').tooltip();
                     
                     if (appt.get("Clinical_MForm_ID")) {
-                        var created = appt.get("Clinical_MForm_ID").createdAt;
+                        var created = appt.get("Clinical_MForm_ID").updatedAt;
                         var weight = appt.get("Clinical_MForm_ID").get("Weight");
                         var height = appt.get("Clinical_MForm_ID").get("Height");
                         var heartRate = appt.get("Clinical_MForm_ID").get("Heart_Rate");
