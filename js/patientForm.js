@@ -11,16 +11,12 @@ function createNewPatientIntoParse() {
     var newPatienthealthcare = document.getElementById("healthCareNoOfPatient").value;
     var newPatientemergname = document.getElementById("nameOfEmergencyContact").value;
     var newPatientemergcontact = document.getElementById("contactNoOfEmergencyContact").value;
-    var gendervalue = '';
-    if (document.getElementById("m").checked){
-      gendervalue = document.getElementById("m").value;
-    } else {
-      gendervalue = document.getElementById("f").value;
-    }
+    var newPatientGender = document.getElementById("genderDropdown");
+    var newPatientSelectedGender = newPatientGender.options[newPatientGender.selectedIndex].value;
 
-    var errors = validatePatientForm(newPatientfname, newPatientlname, newPatientemail, gendervalue, newPatientDOB, newPatientcontact, parseInt(newPatientmedicare), parseInt(newPatienthealthcare));
+    var errors = validatePatientForm(newPatientfname, newPatientlname, newPatientemail, newPatientSelectedGender, newPatientDOB, newPatientcontact, parseInt(newPatientmedicare), parseInt(newPatienthealthcare));
     if (errors == "") {
-       parseCreatePatient(newPatientfname, newPatientlname, newPatientemail, newPatientaddress, newPatientDOB, newPatientcontact, newPatientoccupation, parseInt(newPatientmedicare), parseInt(newPatienthealthcare), newPatientemergname, newPatientemergcontact, gendervalue);
+       parseCreatePatient(newPatientfname, newPatientlname, newPatientemail, newPatientaddress, newPatientDOB, newPatientcontact, newPatientoccupation, parseInt(newPatientmedicare), parseInt(newPatienthealthcare), newPatientemergname, newPatientemergcontact, newPatientSelectedGender);
     } else {
         alert(errors);
         $('#createNewPatientButton').removeAttr('disabled');
@@ -72,7 +68,7 @@ function validatePatientForm(fname, lname, email, gender, DOB, contactno, medica
     if (!re.test(email)) {
         returnValue = returnValue.concat("Please enter a valid email address\n");
     }
-    if (gender == "") {
+    if (gender == "Select") {
         returnValue = returnValue.concat("Gender cannot be blank\n");
     }
     if (DOB == "") {

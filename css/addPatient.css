@@ -96,7 +96,7 @@ font-family: 'Raleway', sans-serif;
 }
 
 .addPatientForm{
-width: 500px;
+width: 510px;
 padding: 10px 50px;
 border: 2px solid gray;
 border-radius: 10px;
@@ -125,11 +125,29 @@ display:inline-block;
 
 .addPatientForm label{
 float:left;
+margin-top: 1px;
+padding:3px;
+height:22px;
+width:130px;
 text-align: right;
 }
  
 #roleDropdown{
 margin-top: 7px;
+height:30px;
+float:right;
+width:270px;
+border: 1px solid #ccc;
+font-size: 14px;
+font-family:raleway;
+border-radius: 5px;
+}
+
+#genderDropdown{
+margin-top: 7px;
+height:30px;
+float:right;
+width:270px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
@@ -137,7 +155,10 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=text]{
-margin-top: 7px;
+margin-top: 3px;
+float:right;
+width:270px;
+height:25px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
@@ -145,7 +166,10 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=password]{
-margin-top: 7px;
+margin-top: 3px;
+float:right;
+height:25px;
+width:270px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
@@ -153,7 +177,10 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=date]{
-margin-top: 15px;
+margin-top:3px;
+float:right;
+height:25px;
+width:270px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
@@ -161,7 +188,9 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=time]{
-margin-top: 15px;
+margin-top: 3px;
+float:right;
+width:270px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
@@ -169,7 +198,10 @@ border-radius: 5px;
 }
 
 .addPatientForm input[type=number]{
-margin-top: 7px;
+margin-top:3px;
+float:right;
+height:25px;
+width:270px;
 border: 1px solid #ccc;
 font-size: 14px;
 font-family:raleway;
@@ -181,7 +213,7 @@ background-image: url("../assets/name.jpg");
 }
 
 #m{
-margin-top: 15px;
+margin-top: 30px;
 }
 
 #f{
@@ -193,7 +225,6 @@ text-decoration:none;
 width:25%;
 height: 30px;
 margin-left: 325px;
-margin-top: 19px;
 text-align:centre;
 display:block;
 background-color:#FFBC00;
