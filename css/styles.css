@@ -12,6 +12,21 @@ body {
     text-align: left;
 }
 
+.tab-content {
+    text-align: left;
+}
+
+.charts {
+    margin: auto;
+    display: inline-block;
+    width: 49%;
+    height: 500px;
+}
+
+#medicaret {
+    margin: 0;
+}
+
 #login-section {
     background-image: url("../assets/header_meet_the_dr.jpg");
     width: 100%;
@@ -36,8 +51,7 @@ body {
 }
 
 #searchResultsPatientHeading{
-  color:blue;
-  margin-right:24.3%;
+  text-align: left;
 }
 
 #searchPatientButton{

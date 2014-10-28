@@ -43,9 +43,9 @@
     <p id='apptdate-result'></p><br>
 
     <ul class="nav nav-tabs nav-justified" role="tablist">
-      <li class="active"><a data-toggle="tab" href="#red">Appointment Notes</a></li>
-      <li><a data-toggle="tab" href="#orange">Clinical Measurements Form</a></li>
-        <li><a data-toggle="tab" href="#yellow">Documents</a></li>
+      <li class="active"><a data-toggle="tab" href="#red"><span class='glyphicon glyphicon-edit'></span> Appointment Notes</a></li>
+      <li><a data-toggle="tab" href="#orange"><span class='glyphicon glyphicon-list-alt'></span> Clinical Measurements Form</a></li>
+        <li><a data-toggle="tab" href="#yellow"><span class='glyphicon glyphicon-file'></span> Documents</a></li>
     </ul>
 
     <div id='details' class="tab-content">
@@ -157,8 +157,59 @@
             </form>
       </div>
       <div class="tab-pane" id="yellow">
-          <h1>Yellow</h1>
-          <p>Put the following information here: All documents with their document type and document description, and maybe a search for them.</p>
+          <h1>Documents Section</h1>
+          <h3>Upload New Document</h3>
+          <form class="form-inline" role="form">
+              <div class="form-group">
+                <label for="inputFileName">File Name</label>
+                <input type="text" class="form-control" id="inputFileName" placeholder="Enter file name">
+              </div>
+              <div class="form-group">
+                <label for="inputFileType">Type of Document</label>
+                <select class="form-control" id="inputFileType">
+                  <option>Test Results</option>
+                  <option>Invoice</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputFile">File input</label>
+                <input type="file" id="inputFile">
+              </div>
+              <button id='new-file-submit' type="submit" class="btn btn-success"><span class='glyphicon glyphicon-cloud-upload'></span> Upload</button>
+            </form>
+          
+          <h3>View Uploaded Documents</h3>
+          <form class="form-inline" role="form">
+              <div class="form-group">
+                <label for="inputSearchCriteria">Search Document Name</label>
+                <input type="text" class="form-control" id="inputSearchCriteria" placeholder="Enter search criteria">
+              </div>
+              <div class="form-group">
+                <label for="inputTypeOfDocument">Type of Document</label>
+                <select class="form-control" id="inputTypeOfDocument">
+                  <option>All</option>
+                  <option>Test Results</option>
+                  <option>Invoice</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <button id='document-filter-submit' type="submit" class="btn btn-success"><span class='glyphicon glyphicon-filter'></span> Filter</button>
+            </form>
+          <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Document Name</th>
+                  <th>File</th>
+                  <th>Document Type</th>
+                  <th>Upload Date/Time</th>
+                </tr>
+              </thead>
+              <tbody id="documents-results-table">
+              </tbody>
+            </table>
+        </table>
       </div>
     </div>
 

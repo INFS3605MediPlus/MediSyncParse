@@ -32,7 +32,10 @@ imonload = function(){
         
         pubnub.subscribe({
             channel: 'my_channel',
-            message: function(m){$('#im-messages').append(htmlEncode(m) + '<br/>')}
+            message: function(m){
+                $('#im-messages').append(htmlEncode(m) + '<br/>');
+                document.getElementById('notification-sound').play();
+            }
          });    
     }
     

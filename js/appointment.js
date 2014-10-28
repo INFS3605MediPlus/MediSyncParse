@@ -4,12 +4,76 @@ appointmentonload = function(){
 
     if (currentUser) {
         // YOU ARE LOGGED IN
-
-        searchSingleAppointmentParse();
+        var appointmentID = getURLParameter("id");
+        if (appointmentID == null) appointmentID = "";
+        
+        searchSingleAppointmentParse(appointmentID);
+        
+        getDocumentsForAppointment(appointmentID);
         
         document.getElementById("save-button").onclick = savenotes;
         document.getElementById("done-button").onclick = donenotes;
-
+        $("#document-filter-submit").click(
+          function(event) {
+            event.preventDefault();
+            $("#documents-results-table").html('');
+            getDocumentsForAppointment(appointmentID);
+          }
+        );
+        $("#new-file-submit").click(
+          function(event) {
+            event.preventDefault();
+            var fileName = $("#inputFileName").val();
+            var fileType = $("#inputFileType").val();
+            if ((fileName == "") || (fileName == null)) {
+                alert('Please give the file a useful name');
+            } else {
+                var fileUploadControl = $("#inputFile")[0];
+                if (fileUploadControl.files.length > 0) {
+                    $('#new-file-submit').attr('disabled','disabled');
+                    var file = fileUploadControl.files[0];
+                    var parseFile = new Parse.File(fileName, file);
+                    parseFile.save().then(function() {
+                        // The file has been saved to Parse.
+                        var Appointment = Parse.Object.extend("Appointment");
+                        var query = new Parse.Query(Appointment);
+                        query.equalTo("objectId", appointmentID);
+                        query.find({
+                            success: function(results){
+                                // do stuff with appointment
+                                var Document = Parse.Object.extend("Document");
+                                var newDocument = new Document();
+                                newDocument.set('Document_File',parseFile);
+                                newDocument.set('Document_Name',fileName);
+                                newDocument.set('Document_Type',fileType);
+                                newDocument.set('Appointment_ID',results[0]);
+                                newDocument.save().then(function(ss) {
+                                    alert('File saved!');
+                                    $('#new-file-submit').removeAttr('disabled');
+                                    $("#documents-results-table").html('');
+                                    getDocumentsForAppointment(appointmentID);
+                                }, function(error) {
+                                    alert("Error: " + error.code + " " + error.message);
+                                    $('#new-file-submit').removeAttr('disabled');
+                                });
+                            },
+                            error: function(error){
+                                alert(error.message);
+                                $('#new-file-submit').removeAttr('disabled');
+                            }
+                        });
+                    }, function(error) {
+                        alert("Error: " + error.code + " " + error.message);
+                        $('#new-file-submit').removeAttr('disabled');
+                    });
+                    
+                } else {
+                    alert('No file found');
+                }
+            }
+          }
+        );
+        
     } else {
         // YOU ARE NOT LOGGED IN
         window.location.href = "index.html";
@@ -20,13 +84,12 @@ appointmentonload = function(){
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
     }
 
-    function searchSingleAppointmentParse() {        
+    function searchSingleAppointmentParse(appointmentID) {        
         var Appointment = Parse.Object.extend("Appointment");  
         var query = new Parse.Query(Appointment);
-        var appointmentID = getURLParameter("id");
-        if (appointmentID == null) appointmentID = "";
         query.equalTo("objectId", appointmentID);
         query.include("Patient_ID");
+        query.include("Specialist_ID");
         query.include("Clinical_Detail_ID");
         query.include("Clinical_MForm_ID");
         query.find({
@@ -34,8 +97,9 @@ appointmentonload = function(){
                 // do stuff with appointment
                 var appt = results[0];
                 var patient = appt.get("Patient_ID");
+                var specialist = appt.get("Specialist_ID");
                 var clinicalDetails = appt.get("Clinical_Detail_ID");
-                $('#patient-name').html("Appointment for: <a href='patient.html?patientID=" + patient.id + "'>" + patient.get('First_Name') + ' ' + patient.get('Last_Name') + "</a>");
+                $('#patient-name').html("Appointment for: <a href='patient.html?patientID=" + patient.id + "'>" + patient.get('First_Name') + ' ' + patient.get('Last_Name') + "</a> with Dr. " + specialist.get('Staff_First_Name') + ' ' + specialist.get('Staff_Last_Name'));
                 $('#apptdate-result').text(appt.get('Appointment_Date'));
                 
                 if (clinicalDetails != null) {
@@ -119,6 +183,43 @@ appointmentonload = function(){
                 alert(error.message);
             }
         });       
+    }
+    
+    function getDocumentsForAppointment(appointmentID) {
+        var Appointment = Parse.Object.extend("Appointment");  
+        var query = new Parse.Query(Appointment);
+        var docStart = $('#inputSearchCriteria').val();
+        var docType = $('#inputTypeOfDocument').val();
+        query.equalTo("objectId", appointmentID);
+        query.find({
+            success: function(results){
+                // do stuff with appointment
+                var appt = results[0];
+                var Document = Parse.Object.extend("Document");  
+                var query = new Parse.Query(Document);
+                query.equalTo("Appointment_ID", appt);
+                if (docType != "All") {
+                    query.equalTo("Document_Type", docType);
+                }
+                query.startsWith("Document_Name", docStart);
+                query.descending("createdAt");
+                query.find({
+                    success: function(results){
+                        // do stuff with appointment
+                        for (var i=0; i < results.length; i++) {
+                            var doc = results[i];
+                            $("#documents-results-table").append("<tr><td>" + i + "</td><td>" + doc.get('Document_Name') + "</td><td><span class='glyphicon glyphicon-download'></span><a target='_blank' href='" + doc.get('Document_File').url() + "'>Click to download file</a></td><td>" + doc.get('Document_Type') + "</td><td>" + doc.createdAt + "</td></tr>");
+                        }
+                    },
+                    error: function(error){
+                        alert(error.message);
+                    }
+                });
+            },
+            error: function(error){
+                alert(error.message);
+            }
+        });
     }
     
     function savenotes() {

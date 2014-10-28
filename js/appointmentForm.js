@@ -21,6 +21,7 @@ function parseCreateAppointment(apptPatientID, apptDate, apptSpecialist) {
     var Appointment = Parse.Object.extend("Appointment");
     var appointment = new Appointment();
     appointment.set("Appointment_Date", apptDate);
+    appointment.set("Creator", Parse.User.current());
     
     var Patient = Parse.Object.extend("Patient");
     var retrievePatientObject = new Parse.Query(Patient);
