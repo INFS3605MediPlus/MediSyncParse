@@ -63,7 +63,7 @@ patientonload = function(){
                     event.preventDefault();
                     var patientID = getURLParameter("patientID");
                     if (patientID == null) patientID = "";
-                    window.location.href = "editpatient.html?patientid=" + patientID;
+                    window.location.href = "editpatient.html?patientID=" + patientID;
                   }
                 );
             }
@@ -82,7 +82,7 @@ patientonload = function(){
                     event.preventDefault();
                     var patientID = getURLParameter("patientID");
                     if (patientID == null) patientID = "";
-                    window.location.href = "editpatient.html?patientid=" + patientID;
+                    window.location.href = "editpatient.html?patientID=" + patientID;
                   }
                 );
             }
@@ -109,6 +109,8 @@ patientonload = function(){
                 $('#emerg-result').text(pat.get('Emergency_Contact_No'));
                 $('#address-result').text(pat.get('Address'));
                 $('#medi-result').text(pat.get('Medicare_No'));
+                $('#gp-name-result').text(pat.get('GP_Referral_Name'));
+                $('#gp-letter-result').html("<span class='glyphicon glyphicon-download'></span><a target='_blank' href='" + pat.get('GP_Referral_Letter').url() + "'>Click to download file</a>");
                 getAppointmentDetailsForPatient(pat);
             },
             error: function(error){

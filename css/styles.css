@@ -304,6 +304,10 @@ body {
     margin: 0;
 }
 
+#edit-patient-form {
+    text-align: left;
+}
+
 #apptdate-result {
     font-size: 1em;
     text-align: left;
