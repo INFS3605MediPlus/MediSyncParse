@@ -27,6 +27,10 @@ body {
     margin: 0;
 }
 
+#cancel-appt-button {
+    margin-left: 10px;
+}
+
 #login-section {
     background-image: url("../assets/header_meet_the_dr.jpg");
     width: 100%;

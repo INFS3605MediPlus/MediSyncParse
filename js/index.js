@@ -29,6 +29,7 @@ indexonload = function(){
             if (currentUsersRole == 'Specialist') {
                 query.equalTo("Specialist_ID", currentUser);
             }
+            query.equalTo("isCancelled", false);
             query.include("Patient_ID");
             query.find({
                 success: function(results){

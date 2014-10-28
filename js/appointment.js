@@ -101,6 +101,8 @@ appointmentonload = function(){
                 var clinicalDetails = appt.get("Clinical_Detail_ID");
                 $('#patient-name').html("Appointment for: <a href='patient.html?patientID=" + patient.id + "'>" + patient.get('First_Name') + ' ' + patient.get('Last_Name') + "</a> with Dr. " + specialist.get('Staff_First_Name') + ' ' + specialist.get('Staff_Last_Name'));
                 $('#apptdate-result').text(appt.get('Appointment_Date'));
+                $('#apptdate-result').append("<button type='button' class='btn btn-warning' id='cancel-appt-button'>Cancel Appointment</button>");
+                document.getElementById("cancel-appt-button").onclick = cancelAppointment;
                 
                 if (clinicalDetails != null) {
                     $('#red').html("<h1>Notes</h1><div id='editor'>Loading&hellip;</div>");
@@ -255,6 +257,33 @@ appointmentonload = function(){
         }, function(error) {
             alert("Error: " + error.code + " " + error.message);
             $('#save-button').removeAttr('disabled');
+        });
+    }
+    
+    function cancelAppointment() {
+        $('#cancel-appt-button').attr('disabled','disabled');
+        var Appointment = Parse.Object.extend("Appointment");
+        var query = new Parse.Query(Appointment);
+        var appointmentID = getURLParameter("id");
+        if (appointmentID == null) appointmentID = "";
+        query.equalTo("objectId", appointmentID);
+        query.find({
+            success: function(results){
+                // do stuff with appointment
+                var appt = results[0];
+                appt.set("isCancelled",true);
+                appt.save().then(function(ss) {
+                    // go back to course page
+                    alert("Appointment cancelled!");
+                    window.location.href = "index.html";
+                }, function(error) {
+                    alert("Error: " + error.code + " " + error.message);
+                    $('#cancel-appt-button').removeAttr('disabled');
+                });
+            },
+            error: function(error){
+                alert(error.message);
+            }
         });
     }
     
