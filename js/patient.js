@@ -126,7 +126,7 @@ patientonload = function(){
         query.include("Specialist_ID");
         query.include("Clinical_Detail_ID");
         query.include("Clinical_MForm_ID");
-        query.descending("createdAt");
+        query.descending("Appointment_Date");
         query.find({
             success: function(results){
                 //var heartLungData = [['Day', 'Heart Rate', 'Lung Function']];
@@ -184,6 +184,7 @@ patientonload = function(){
                 query.lessThan("Appointment_Date",endDate);
                 query.include("Specialist_ID");
                 query.include("Clinical_Detail_ID");
+                query.descending("Appointment_Date");
                 query.find({
                     success: function(results){
                         for (var i=0; i < results.length; i++) {
