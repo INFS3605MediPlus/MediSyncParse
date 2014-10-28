@@ -99,16 +99,6 @@ body {
     outline: 0;   
 }
  
-.form-wrapper button:before { /* left arrow */
-    content: '';
-    position: absolute;
-    border-width: 8px 8px 8px 0;
-    border-style: solid solid solid none;
-    border-color: transparent #d83c3c transparent;
-    top: 17.5%;
-    left: 58.2%;
-}
- 
 .form-wrapper button:hover:before{
     border-right-color: #e54040;
 }
