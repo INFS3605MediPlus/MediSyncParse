@@ -45,7 +45,8 @@
     <ul class="nav nav-tabs nav-justified" role="tablist">
       <li class="active"><a data-toggle="tab" href="#red"><span class='glyphicon glyphicon-edit'></span> Appointment Notes</a></li>
       <li><a data-toggle="tab" href="#orange"><span class='glyphicon glyphicon-list-alt'></span> Clinical Measurements Form</a></li>
-        <li><a data-toggle="tab" href="#yellow"><span class='glyphicon glyphicon-file'></span> Documents</a></li>
+      <li><a data-toggle="tab" href="#yellow"><span class='glyphicon glyphicon-file'></span> Documents</a></li>
+      <li><a data-toggle="tab" href="#blue"><span class='glyphicon glyphicon-check'></span> Tests Performed</a></li>
     </ul>
 
     <div id='details' class="tab-content">
@@ -93,11 +94,6 @@
                 <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
 
               </div>
-
-              <div class="btn-group">
-                <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
-                <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
-              </div>
               <div class="btn-group">
                 <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
                 <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
@@ -107,7 +103,7 @@
           <div id="editor">
              Loading&hellip;
           </div><br>
-          <button type="button" class="btn btn-success" id='save-button'>Save</button>
+          <button type="button" class="btn btn-success" id='save-button'><span class='glyphicon glyphicon-floppy-disk'></span> Save</button>
           <button type="button" class="btn btn-default" id='done-button'>Done</button><br>
       </div>
       <div class="tab-pane" id="orange">
@@ -211,6 +207,12 @@
               </tbody>
             </table>
         </table>
+      </div>
+      <div class="tab-pane" id="blue">
+          <h1>Tests Performed</h1>
+          <p>Note: this will affect the payment charged to the patient.</p>
+          <form class="form" role="form" id='tests-form'>
+            </form>
       </div>
     </div>
 

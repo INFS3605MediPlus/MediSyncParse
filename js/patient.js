@@ -137,6 +137,7 @@ patientonload = function(){
         query.include("Specialist_ID");
         query.include("Clinical_Detail_ID");
         query.include("Clinical_MForm_ID");
+        query.include("Appointment_Type");
         query.descending("Appointment_Date");
         query.find({
             success: function(results){
@@ -152,7 +153,8 @@ patientonload = function(){
                         var notes = "";
                     }
                     var specialist = appt.get("Specialist_ID").get("Staff_First_Name") + ' ' + appt.get("Specialist_ID").get("Staff_Last_Name");
-                    $("#appt-results-table").append("<tr><td>" + i + "</td><td><a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a></td><td>" + specialist + "</td><td>" + notes + "</td></tr>");
+                    var typeOfAppointment = appt.get("Appointment_Type").get('Appointment_Type');
+                    $("#appt-results-table").append("<tr><td>" + i + "</td><td><a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a></td><td>" + typeOfAppointment + "</td><td>" + specialist + "</td><td>" + notes + "</td></tr>");
                     $('.appt-result').tooltip();
                     
                     if (appt.get("Clinical_MForm_ID")) {
@@ -195,6 +197,7 @@ patientonload = function(){
                 query.lessThan("Appointment_Date",endDate);
                 query.include("Specialist_ID");
                 query.include("Clinical_Detail_ID");
+                query.include("Appointment_Type");
                 query.descending("Appointment_Date");
                 query.find({
                     success: function(results){
@@ -206,7 +209,8 @@ patientonload = function(){
                                 var notes = "";
                             }
                             var specialist = appt.get("Specialist_ID").get("Staff_First_Name") + ' ' + appt.get("Specialist_ID").get("Staff_Last_Name");
-                            $("#appt-results-table").append("<tr><td>" + i + "</td><td><a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a></td><td>" + specialist + "</td><td>" + notes + "</td></tr>");
+                            var typeOfAppointment = appt.get("Appointment_Type").get('Appointment_Type');
+                            $("#appt-results-table").append("<tr><td>" + i + "</td><td><a class='appt-result' href='appointment.html?id=" + appt.id + "' data-toggle='tooltip' data-placement='right' title='See appointment details'>" + appt.get('Appointment_Date') + "</a></td><td>" + typeOfAppointment + "</td><td>" + specialist + "</td><td>" + notes + "</td></tr>");
                             $('.appt-result').tooltip();
                         }
                     },

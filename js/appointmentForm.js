@@ -4,10 +4,11 @@ function createNewAppointmentIntoParse() {
     if (newApptPatientID != null) {
         var newApptDate = $('#datetimepicker2').data("DateTimePicker").getDate();
         var newApptSpecialist = $('#apptSpecialist').val();
+        var newApptType = $('#typeApptDropdown').val();
 
         var errors = validateAppointmentForm(newApptDate, newApptSpecialist);
         if (errors == "") {
-           parseCreateAppointment(newApptPatientID, new Date(newApptDate), newApptSpecialist);
+           parseCreateAppointment(newApptPatientID, new Date(newApptDate), newApptSpecialist, newApptType);
         } else {
             alert(errors);
             $('#createNewAppointmentButton').removeAttr('disabled');
@@ -17,7 +18,7 @@ function createNewAppointmentIntoParse() {
     }
 }
 
-function parseCreateAppointment(apptPatientID, apptDate, apptSpecialist) {
+function parseCreateAppointment(apptPatientID, apptDate, apptSpecialist, apptType) {
     var Appointment = Parse.Object.extend("Appointment");
     var appointment = new Appointment();
     appointment.set("Appointment_Date", apptDate);
@@ -42,16 +43,29 @@ function parseCreateAppointment(apptPatientID, apptDate, apptSpecialist) {
                         success: function(results) {
                             if (results[0]) {
                                 appointment.set("Specialist_ID", results[0]);
-                                appointment.save(null, {
-                                  success: function(appointment) {
-                                    alert("Appointment created");
-                                    window.location.href = "appointment.html?id=" + appointment.id;
-                                  },
-                                  error: function(Appointment, error) {
-                                    // Show the error message somewhere and let the user try again.
-                                    alert("Error: " + error.code + " " + error.message);
-                                    $('#createNewAppointmentButton').removeAttr('disabled');
-                                  }
+                                
+                                var Appointment_Type = Parse.Object.extend("Appointment_Type");
+                                var retrieveAppointmentType = new Parse.Query(Appointment_Type);
+                                retrieveAppointmentType.equalTo("objectId", apptType);
+                                retrieveAppointmentType.find({
+                                    success: function(results) {
+                                        appointment.set("Appointment_Type", results[0]);
+                                        appointment.save(null, {
+                                          success: function(appointment) {
+                                            alert("Appointment created");
+                                            window.location.href = "appointment.html?id=" + appointment.id;
+                                          },
+                                          error: function(Appointment, error) {
+                                            // Show the error message somewhere and let the user try again.
+                                            alert("Error: " + error.code + " " + error.message);
+                                            $('#createNewAppointmentButton').removeAttr('disabled');
+                                          }
+                                        });
+                                    },
+                                    error: function(error) {
+                                        alert("Error: " + error.code + " " + error.message);
+                                        $('#createNewAppointmentButton').removeAttr('disabled');
+                                    }
                                 });
                             } else {
                                 alert('No such specialist found!');

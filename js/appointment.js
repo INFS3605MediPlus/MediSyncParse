@@ -74,14 +74,106 @@ appointmentonload = function(){
           }
         );
         
+        // get tests for tests tab
+        var Appointment_Tests = Parse.Object.extend("Appointment_Tests");
+        var Appointment = Parse.Object.extend("Appointment");
+        var query = new Parse.Query(Appointment_Tests);
+        var apptpointer = new Appointment();
+        apptpointer.id = appointmentID;
+        query.equalTo("Appointment_ID", apptpointer);
+        query.include("Test_ID");
+        query.find({
+            success: function(results){
+                if (results.length == 0) {
+                    // show tests form
+                    var Test = Parse.Object.extend("Test");
+                    var query = new Parse.Query(Test);
+                    query.find({
+                        success: function(results){
+                            for (var i=0; i < results.length; i++) {
+                                var testToAdd = results[i];
+                                $('#tests-form').append("<div class='checkbox'><label><input type='checkbox' value='" + testToAdd.id + "'> " + testToAdd.get('Test_Type') + "</label></div>");
+                            }
+                            $('#tests-form').append("<button type='submit' class='btn btn-default' id='submit-tests-form'><span class='glyphicon glyphicon-floppy-disk'></span> Submit</button>");
+                            $("#submit-tests-form").click(
+                              function(event) {
+                                  event.preventDefault();
+                                  submittests(appointmentID); //submittests should reload the page
+                              }
+                            );
+                        },
+                        error: function(error){
+                            alert(error.message);
+                        }
+                    });
+                } else {
+                    // show all tests included
+                    $('#tests-form').after("<div id='testsPerformed'><h4>The following tests were performed:</h4></div>");
+                    for (var i=0; i < results.length; i++) {
+                        var testToAdd = results[i];
+                        var testAssociated = testToAdd.get("Test_ID");
+                        $('#testsPerformed').append("<p><span class='glyphicon glyphicon-ok'></span> " + testAssociated.get('Test_Type') + "</p>");
+                    }
+                }
+            },
+            error: function(error){
+                alert(error.message);
+            }
+        });
+        
+        
     } else {
         // YOU ARE NOT LOGGED IN
         window.location.href = "index.html";
     }
     
-    
     function getURLParameter(name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
+    
+    function submittests(appointmentID) {
+        $("#submit-tests-form").attr('disabled','disabled');
+        var Appointment_Tests = Parse.Object.extend("Appointment_Tests");
+        var Appointment = Parse.Object.extend("Appointment");
+        var Test = Parse.Object.extend("Test");
+        var form = document.getElementById('tests-form');
+        
+        // count number of checked elements
+        var count = 0;
+        for (var i = 0; i < form.elements.length; i++ ) {
+            if (form.elements[i].type == 'checkbox') {
+                if (form.elements[i].checked == true) {
+                    count++;
+                }
+            }
+        }
+        var currentCheckedElement = 0;
+        for (var i = 0; i < form.elements.length; i++ ) {
+            if (form.elements[i].type == 'checkbox') {
+                if (form.elements[i].checked == true) {
+                    var apptpointer = new Appointment();
+                    apptpointer.id = appointmentID;
+                    var testpointer = new Test();
+                    testpointer.id = form.elements[i].value;
+                    var newApptTest = new Appointment_Tests();
+                    newApptTest.set("Appointment_ID",apptpointer);
+                    newApptTest.set("Test_ID",testpointer);
+                    newApptTest.save(null, {
+                      success: function(apptTest) {
+                          currentCheckedElement++;
+                          if (currentCheckedElement == count) {
+                              alert('Tests saved!');
+                              location.reload();
+                          }
+                      },
+                      error: function(apptTest, error) {
+                        alert('Failed to create new object, with error code: ' + error.message);
+                          $('#submit-tests-form').removeAttr('disabled');
+                      }
+                    });
+                }
+            }
+        }
     }
 
     function searchSingleAppointmentParse(appointmentID) {        

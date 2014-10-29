@@ -149,7 +149,7 @@ font-family:raleway;
 border-radius: 5px;
 }
 
-#genderDropdown{
+#genderDropdown, #typeApptDropdown{
 margin-top: 2px;
 height:30px;
 float:right;
