@@ -125,6 +125,9 @@ border-top: 2px solid #ccc;
 display:inline-block;
 }
 
+#appointmentform #popupAddPatient .addPatientForm label{
+margin-top: 0px;
+}
 
 .addPatientForm label{
 float:left;
