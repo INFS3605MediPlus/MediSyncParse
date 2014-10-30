@@ -347,6 +347,33 @@ patientonload = function(){
         var chart = new google.visualization.LineChart(document.getElementById(divID));
         chart.draw(data3, options);
     }
+    
+    function generatePDF() {
+        $("#generate-receipt").attr('disabled','disabled');
+        // get all appointment and appointment tests info here
+        
+        
+        
+        var doc = new jsPDF();
+       
+        var elementHandler = {
+            '#generate-receipt': function (element, renderer) {
+                    return true;
+            }
+        };
+        var source = $('#forPDF').html();
+        doc.fromHTML(
+            source,
+            15,
+            15,
+            {
+              'width': 180,'elementHandlers': elementHandler
+            });
+
+        doc.output("dataurlnewwindow");
+    }
+
+    document.getElementById("generate-receipt").onclick = generatePDF;
 };
 
 function getURLParameter(name) {
