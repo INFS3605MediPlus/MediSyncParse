@@ -54,7 +54,7 @@ function parseCreateAppointment(apptPatientID, apptDate, apptSpecialist, apptTyp
                                         appointment.save(null, {
                                           success: function(appointment) {
                                             alert("Appointment created");
-                                            window.location.href = "appointment.html?id=" + appointment.id;
+                                            window.location.href = "index.html";
                                           },
                                           error: function(Appointment, error) {
                                             // Show the error message somewhere and let the user try again.
