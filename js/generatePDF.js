@@ -42,7 +42,9 @@ function generatePDF() {
   		},
   		'#calendar': function (element, renderer) {
     	return true;
-  		}
+  		},
+      '#calendar': function (element, renderer) {
+      return true;
 	};
 var source = window.document.getElementsByTagName("body")[0];
 doc.fromHTML(
