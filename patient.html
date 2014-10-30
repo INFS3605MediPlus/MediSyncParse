@@ -109,14 +109,15 @@
       </div>
       <div class="tab-pane" id="yellow">
           <h1>Payment and Billing Section</h1>
-          <form class="form-horizontal" role="form" id='payment-form'>
             <h3>Appointments not paid for</h3>
-              <div id='payment-appointment-info'>What appointments is the patient paying for:</div>
+              <div>What appointments is the patient paying for: </div>
+              <form id='payment-appointment-info'></form>
+          <form class="form-horizontal" role="form" id='payment-form'>
             <h3>Payment Due</h3>
             <div class="form-group">
                 <label for="disabledCostInput" class="col-sm-2 control-label">Payment Due</label>
                 <div class="col-sm-10">
-                    <input class="form-control" id="disabledCostInput" type="text" placeholder="Calculated amount due" disabled>
+                    <input class="form-control" id="disabledCostInput" type="text" value="0" disabled>
                 </div>
             </div>
             <div class="form-group">
@@ -132,10 +133,10 @@
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <button type="button" class="btn btn-success btn-lg btn-block" id='record-payment'><span class='glyphicon glyphicon-check'></span> Record Payment</button>
+                <button type="button" class="btn btn-default btn-lg btn-block" id='generate-receipt'><span class='glyphicon glyphicon-list-alt'></span> Generate Current Invoice</button>
               </div>
             </div>
           </form>
-          <button type="button" class="btn btn-default btn-lg btn-block" id='generate-receipt'><span class='glyphicon glyphicon-list-alt'></span> Generate Current Invoice</button>
       </div>
     </div>
 

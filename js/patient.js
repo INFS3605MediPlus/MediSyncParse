@@ -167,7 +167,7 @@ patientonload = function(){
                     }
                     
                     // add payment data
-                    if (!appt.get("Paid")) {
+                    if (!appt.get("Paid") && (appt.get("Appointment_Date") < new Date())) {
                         unpaidAppointments.push(appt);
                     }
                 }
@@ -186,35 +186,101 @@ patientonload = function(){
     }
     
     function updatePaymentResults(unpaidAppointments) {
-        var Test = Parse.Object.extend("Test");  
-        var query = new Parse.Query(Test);
-        var totalCostForAppointments = 0;
-        query.find({
-            success: function(tests){
-                var Appointment_Type = Parse.Object.extend("Appointment_Type");  
-                var query = new Parse.Query(Appointment_Type);
-                query.find({
-                    success: function(appointmentTypes){
-                        if (unpaidAppointments.length == 0) {
-                            $('#payment-form').html("All appointments have been paid for!");
-                        } else {
-                            for (var i=0; i < unpaidAppointments.length; i++) {
-                                amountDue = calculateAmountForAppointment(unpaidAppointments[i], tests, appointmentTypes);
-                                $('#payment-appointment-info').append("<div class='checkbox'><label><input type='checkbox' id='blankCheckbox' value='" + unpaidAppointments[i].id + "'>Appointment on: " + unpaidAppointments[i].get('Appointment_Date') + " | Amount Due: " + amountDue + "</label></div>");
+        if (unpaidAppointments.length == 0) {
+            $('#yellow').html("<h1>Payment and Billing Section</h1>All appointments have been paid for!");
+        } else {
+            for (var i=0; i < unpaidAppointments.length; i++) {
+                appointmentID = unpaidAppointments[i].id;
+                $('#payment-appointment-info').append("<div class='checkbox'><label><input class='payment-appt-checkbox' type='checkbox' value='" + appointmentID + "'>Appointment on: " + unpaidAppointments[i].get('Appointment_Date') + " | Amount Due in $AUD: <input class='form-control' id='" + appointmentID + "' type='text' disabled></label></div>");
+                amountDue = unpaidAppointments[i].get("Appointment_Type").get("Cost");
+                // search for appointment tests and add their cost onto amountDue
+                
+                (function(amountDue, appointmentID) {
+                    var Appointment_Tests = Parse.Object.extend("Appointment_Tests");  
+                    var query = new Parse.Query(Appointment_Tests);
+                    query.equalTo("Appointment_ID", unpaidAppointments[i]);
+                    query.include("Test_ID");
+                    query.find({
+                        success: function(results){
+                            // do stuff with patient
+                            for (var i=0; i < results.length; i++) {
+                                amountDue = amountDue + results[i].get("Test_ID").get("Test_Cost");
                             }
+                            $("#" + appointmentID).val(amountDue);
+                        },
+                        error: function(error){
+                            alert(error.message);
                         }
-                        // on click of a checkbox, append a value to #disabledCostInput
-                        $('#disabledCostInput').val("$" + totalCostForAppointments);
-                    },
-                    error: function(error){
-                        alert(error.message);
-                    }
-                });
-            },
-            error: function(error){
-                alert(error.message);
+                    });
+                })(amountDue, appointmentID);
+            }
+        }
+        // on click of a checkbox, append a value to #disabledCostInput
+        $('.payment-appt-checkbox').click(function() {
+            if ($(this).prop('checked')) {
+                var valueToAdd = parseInt($("#" + $(this).val()).val());
+                $('#disabledCostInput').val(parseInt($('#disabledCostInput').val()) + valueToAdd);
+            } else {
+                var valueToAdd = parseInt($("#" + $(this).val()).val());
+                $('#disabledCostInput').val(parseInt($('#disabledCostInput').val()) - valueToAdd);
             }
         });
+        
+        $("#record-payment").click(function(event) {
+            event.preventDefault();
+            $("#record-payment").attr('disabled','disabled');
+            var Appointment_Tests = Parse.Object.extend("Appointment_Tests");
+            var Appointment = Parse.Object.extend("Appointment");
+            var Test = Parse.Object.extend("Test");
+            var form = document.getElementById('payment-appointment-info');
+
+            // count number of checked elements
+            var count = 0;
+            for (var i = 0; i < form.elements.length; i++ ) {
+                if (form.elements[i].type == 'checkbox') {
+                    if (form.elements[i].checked == true) {
+                        count++;
+                    }
+                }
+            }
+            if (count == 0) alert("No appointments selected");
+            var currentCheckedElement = 0;
+            for (var i = 0; i < form.elements.length; i++ ) {
+                if (form.elements[i].type == 'checkbox') {
+                    if (form.elements[i].checked == true) {
+                        apptID = form.elements[i].value;
+                        var paymentType = $('#payment-type-select').val();
+                        var query = new Parse.Query(Appointment);
+                        query.get(apptID, {
+                          success: function(appt) {
+                                appt.set("Paid",true);
+                                appt.set("Payment_Date",new Date());
+                                appt.set("Payment_Type",paymentType);
+                                appt.save(null, {
+                                  success: function(apptTest) {
+                                      currentCheckedElement++;
+                                      if (currentCheckedElement == count) {
+                                          alert('Payments saved!');
+                                          location.reload();
+                                      }
+                                  },
+                                  error: function(apptTest, error) {
+                                    alert('Failed to create new object, with error code: ' + error.message);
+                                      $('#record-payment').removeAttr('disabled');
+                                  }
+                                });
+                          },
+                          error: function(object, error) {
+                              alert('Failed to create new object, with error code: ' + error.message);
+                              $('#record-payment').removeAttr('disabled');
+                          }
+                        });
+                    }
+                }
+            }
+              $('#record-payment').removeAttr('disabled');
+          }
+        );
     }
     
     function refreshApptDetailsTable(startDate, endDate, patientID) {
