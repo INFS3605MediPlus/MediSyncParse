@@ -236,6 +236,7 @@ patientonload = function(){
 
         var options = {
             title: titleForChart,
+            width: (document.getElementById("red").offsetWidth*49/100),
             curveType: 'function',
             legend: { position: 'bottom' }
         };
