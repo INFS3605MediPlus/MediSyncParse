@@ -121,7 +121,10 @@ patientonload = function(){
                 $('#address-result').text(pat.get('Address'));
                 $('#medi-result').text(pat.get('Medicare_No'));
                 $('#gp-name-result').text(pat.get('GP_Referral_Name'));
-                $('#gp-letter-result').html("<span class='glyphicon glyphicon-download'></span><a target='_blank' href='" + pat.get('GP_Referral_Letter').url() + "'>Click to download file</a>");
+                if (pat.get('GP_Referral_Letter')) {
+                    $('#gp-letter-result').html("<span class='glyphicon glyphicon-download'></span><a target='_blank' href='" + pat.get('GP_Referral_Letter').url() + "'>Click to download file</a>");
+                }
+                
                 getAppointmentDetailsForPatient(pat);
             },
             error: function(error){
