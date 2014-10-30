@@ -141,10 +141,9 @@ patientonload = function(){
         query.descending("Appointment_Date");
         query.find({
             success: function(results){
-                //var heartLungData = [['Day', 'Heart Rate', 'Lung Function']];
-                //var heightWeightData = [['Day', 'Height', 'Weight']];
                 var heartLungData = [];
                 var heightWeightData = [];
+                var unpaidAppointments = [];
                 for (var i=0; i < results.length; i++) {
                     var appt = results[i];
                     if (appt.get("Clinical_Detail_ID")) {
@@ -166,6 +165,11 @@ patientonload = function(){
                         heartLungData.push([created,heartRate,lungFunction]);
                         heightWeightData.push([created,height,weight]);
                     }
+                    
+                    // add payment data
+                    if (!appt.get("Paid")) {
+                        unpaidAppointments.push(appt);
+                    }
                 }
                 if(heartLungData.length != 0) {
                     loadGoogleChart(heartLungData, 'chart_div', 'Heart Rate and Lung Function Data', 'Heart Rate', 'Lung Function');
@@ -173,6 +177,39 @@ patientonload = function(){
                 if(heightWeightData.length != 0) {
                     loadGoogleChart(heightWeightData, 'chart_div2', 'Height and Weight Data', 'Height', 'Weight');
                 }
+                updatePaymentResults(unpaidAppointments);
+            },
+            error: function(error){
+                alert(error.message);
+            }
+        });
+    }
+    
+    function updatePaymentResults(unpaidAppointments) {
+        var Test = Parse.Object.extend("Test");  
+        var query = new Parse.Query(Test);
+        var totalCostForAppointments = 0;
+        query.find({
+            success: function(tests){
+                var Appointment_Type = Parse.Object.extend("Appointment_Type");  
+                var query = new Parse.Query(Appointment_Type);
+                query.find({
+                    success: function(appointmentTypes){
+                        if (unpaidAppointments.length == 0) {
+                            $('#payment-form').html("All appointments have been paid for!");
+                        } else {
+                            for (var i=0; i < unpaidAppointments.length; i++) {
+                                amountDue = calculateAmountForAppointment(unpaidAppointments[i], tests, appointmentTypes);
+                                $('#payment-appointment-info').append("<div class='checkbox'><label><input type='checkbox' id='blankCheckbox' value='" + unpaidAppointments[i].id + "'>Appointment on: " + unpaidAppointments[i].get('Appointment_Date') + " | Amount Due: " + amountDue + "</label></div>");
+                            }
+                        }
+                        // on click of a checkbox, append a value to #disabledCostInput
+                        $('#disabledCostInput').val("$" + totalCostForAppointments);
+                    },
+                    error: function(error){
+                        alert(error.message);
+                    }
+                });
             },
             error: function(error){
                 alert(error.message);
