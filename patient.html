@@ -25,10 +25,8 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
   <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
   <script type="text/javascript" src="js/daterangepicker.js"></script>
-    <script type="text/javascript" src="js/jspdf.js"></script>
-    <script type="text/javascript" src="js/jspdf.plugin.from_html.js"></script>
-    <script type="text/javascript" src="js/jspdf.plugin.split_text_to_size.js"></script>
-    <script type="text/javascript" src="js/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script type="text/javascript" src="js/jspdf.min.js"></script>
+    <script type="text/javascript" src="js/html2canvas.js"></script>
   <link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
   
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -157,6 +155,16 @@
                 </tr>
               </thead>
               <tbody id="appt-pdf-results-table">
+              </tbody>
+        </table>
+        <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Test Name</th>
+                </tr>
+              </thead>
+              <tbody id="appt-test-pdf-results-table">
               </tbody>
         </table>
     </div>
